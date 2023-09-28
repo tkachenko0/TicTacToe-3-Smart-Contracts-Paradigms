@@ -7,23 +7,28 @@ on:
     # Review gh actions docs if you want to further define triggers, paths, etc
     # https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#on
 
+defaults:
+    run:
+        shell: bash
+        working-directory: ./web-docs
+      
+
 jobs:
   deploy:
     name: Deploy to GitHub Pages
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      
       - uses: actions/setup-node@v3
         with:
           node-version: 18
           cache: yarn
 
       - name: Install dependencies
-        working-directory: TicTacToe-3-Smart-Contracts-Paradigms/web-docs
         run: yarn install --frozen-lockfile
 
       - name: Build website
-        working-directory: TicTacToe-3-Smart-Contracts-Paradigms/web-docs
         run: yarn build
 
       # Popular action to deploy to GitHub Pages:
