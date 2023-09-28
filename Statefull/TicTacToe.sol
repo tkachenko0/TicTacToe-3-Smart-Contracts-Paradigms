@@ -9,20 +9,22 @@ contract TicTacToe {
     uint public gameTimeoutBlock;
     uint public initialDeposit;
 
+    bool playerAhasDeposited;
     bool playerBhasDeposited;
 
     enum CellState { Empty, X, O }
 
     CellState[3][3] public board;
 
-    constructor(address _playerB, uint _gameTimeoutBlocks) payable {
-        require(msg.value > 0, "Initial deposit must be greater than 0");
+    constructor(address _playerA, address _playerB, uint _gameTimeoutBlocks, uint256 _initialDeposit)  {
+        require(_playerA != address(0), "PlayerA address cannot be zero");
         require(_playerB != address(0), "PlayerB address cannot be zero");
 
-        playerA = msg.sender;
+        playerA = _playerA;
         playerB = _playerB;
+        playerAhasDeposited = false;
         playerBhasDeposited = false;
-        initialDeposit = msg.value;
+        initialDeposit = _initialDeposit;
         gameTimeoutBlock = block.number + _gameTimeoutBlocks;
         currentPlayer = playerA;
     }
@@ -32,9 +34,15 @@ contract TicTacToe {
         require(row < 3 && col < 3, "Invalid cell coordinates");
         require(board[row][col] == CellState.Empty, "Cell is already occupied");
 
+        // Verify if playerA has deposited
+        if (currentPlayer == playerA && !playerAhasDeposited) {
+            require(msg.value == initialDeposit, "Player A must make the initial deposit");
+            playerAhasDeposited = true;
+        }
+
         // Verify if playerB has deposited
         if (currentPlayer == playerB && !playerBhasDeposited) {
-            require(msg.value == initialDeposit, "Player B must makes the initial deposit");
+            require(msg.value == initialDeposit, "Player B must make the initial deposit");
             playerBhasDeposited = true;
         }
 
