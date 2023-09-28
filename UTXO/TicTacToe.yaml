@@ -11,6 +11,7 @@ outputs:
           )
           or
           (
+            before N &&
             rtx[0].script == rtxo[0].script && 
             row >= 0 && row < 3 && col >= 0 && col < 3 &&
             ((rtxo.turnA && versigA(rtx, sig)) or (!rtxo.turnA && versigB(rtx, sig))) && 
