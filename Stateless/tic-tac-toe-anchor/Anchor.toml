@@ -1,0 +1,17 @@
+[features]
+seeds = true
+skip-lint = false
+
+[programs.localnet]
+tic_tac_toe_anchor = "Enq7EUNZshTBsTMDzimmv4dv1wC8jaZmm7wgrSH4UPsj"
+
+[registry]
+url = "https://api.apr.dev"
+
+[provider]
+cluster = "Localnet"
+wallet = "/Users/vtkachenko/.config/solana/id.json"
+
+[scripts]
+test = "yarn run ts-mocha -p ./tsconfig.json -t 1000000 tests/**/*.ts"
+test_tic_tac_toe = "yarn run ts-mocha -p ./tsconfig.json -t 1000000 tests/test_tic_tac_toe.ts"
