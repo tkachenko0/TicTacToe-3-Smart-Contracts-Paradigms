@@ -33,18 +33,9 @@ contract TicTacToe {
         require(msg.sender == currentPlayer, "It's not your turn");
         require(row < 3 && col < 3, "Invalid cell coordinates");
         require(board[row][col] == CellState.Empty, "Cell is already occupied");
+        require(block.number < gameTimeoutBlock, "Timeout was reached");
 
-        // Verify if playerA has deposited
-        if (currentPlayer == playerA && !playerAhasDeposited) {
-            require(msg.value == requiredDeposit, "Player A must make the initial deposit");
-            playerAhasDeposited = true;
-        }
-
-        // Verify if playerB has deposited
-        if (currentPlayer == playerB && !playerBhasDeposited) {
-            require(msg.value == requiredDeposit, "Player B must make the initial deposit");
-            playerBhasDeposited = true;
-        }
+        verifyDeposit();
 
         board[row][col] = (currentPlayer == playerA) ? CellState.X : CellState.O;
 
@@ -58,6 +49,15 @@ contract TicTacToe {
         }
     }
 
+    function verifyDeposit() internal {
+        require(msg.value == requiredDeposit, "Player must make the initial deposit");
+
+        if (currentPlayer == playerA && !playerAhasDeposited) {
+            playerAhasDeposited = true;
+        } else if (currentPlayer == playerB && !playerBhasDeposited) {
+            playerBhasDeposited = true;
+        }
+    }
 
     function timeout() external {
         require(block.number >= gameTimeoutBlock, "Timeout has not been reached yet");
