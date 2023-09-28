@@ -19,8 +19,11 @@ jobs:
           cache: yarn
 
       - name: Install dependencies
+        working-directory: TicTacToe-3-Smart-Contracts-Paradigms/web-docs
         run: yarn install --frozen-lockfile
+
       - name: Build website
+        working-directory: TicTacToe-3-Smart-Contracts-Paradigms/web-docs
         run: yarn build
 
       # Popular action to deploy to GitHub Pages:
