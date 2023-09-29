@@ -54,9 +54,6 @@ In this section, we provide an overview of the Tic Tac Toe game implemented in t
 Account-Based smart contracts, when stateful, have the capability to maintain and modify their own internal state.
 
 ```solidity
-// SPDX-License-Identifier: MIT
-pragma solidity ^0.8.0;
-
 contract TicTacToe {
     address public playerA;
     address public playerB;
@@ -85,6 +82,10 @@ contract TicTacToe {
         currentPlayer = playerA;
     }
 
+```
+
+```solidity
+
     function makeMove(uint8 row, uint8 col) external payable  {
         require(msg.sender == currentPlayer, "It's not your turn");
         require(row < 3 && col < 3, "Invalid cell coordinates");
@@ -97,8 +98,7 @@ contract TicTacToe {
 
         if (checkWinner()) {
             // Player who made the winning move gets the funds
-            (bool success, ) = currentPlayer.call{value: address(this).balance}("");
-            require(success, "Transfer failed");
+            // Transfer address(this).balance to currentPlayer
         } else {
             // Switch to the other player
             currentPlayer = (currentPlayer == playerA) ? playerB : playerA;
@@ -115,42 +115,21 @@ contract TicTacToe {
         }
     }
 
+       function checkWinner() internal view returns (bool) {
+        // You can find the implementation of this function in the full code
+    }
+
+```
+
+```solidity
+
     function timeout() external {
         require(block.number >= gameTimeoutBlock, "Timeout has not been reached yet");
         address allowedPlayer = currentPlayer == playerA ? playerB : playerA;
         require(msg.sender != allowedPlayer, "Not valid player");
 
-        (bool success, ) = allowedPlayer.call{value: address(this).balance}("");
-        require(success, "Transfer failed");
+        // Transfer address(this).balance to allowedPlayer
     }
-
-   function checkWinner() internal view returns (bool) {
-        // Check rows
-        for (uint8 i = 0; i < 3; i++) {
-            if (board[i][0] == board[i][1] && board[i][1] == board[i][2] && board[i][0] != CellState.Empty) {
-                return true;
-            }
-        }
-
-        // Check columns
-        for (uint8 i = 0; i < 3; i++) {
-            if (board[0][i] == board[1][i] && board[1][i] == board[2][i] && board[0][i] != CellState.Empty) {
-                return true;
-            }
-        }
-
-        // Check diagonals
-        if (board[0][0] == board[1][1] && board[1][1] == board[2][2] && board[0][0] != CellState.Empty) {
-            return true;
-        }
-        if (board[0][2] == board[1][1] && board[1][1] == board[2][0] && board[0][2] != CellState.Empty) {
-            return true;
-        }
-
-        return false;
-    }
-
-}
 
 ```
 
@@ -401,8 +380,6 @@ pub enum CustomError {
 ### UTXO Based Implementation
 
 In the UTXO-Based paradigm, we adapted the Tic Tac Toe game to utilize the unique principles of this model.
-
-code:
 
 ```yaml
 tx1TicTacToe
