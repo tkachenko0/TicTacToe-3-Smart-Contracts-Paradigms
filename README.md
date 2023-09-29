@@ -58,11 +58,11 @@ In this section, we provide an overview of the Tic Tac Toe game implemented in t
 
 Account-Based smart contracts, when stateful, have the capability to maintain and modify their own internal state.
 
-You can see the provided implementation by opening the collapsed section below.
+You can see the provided pseudocode implementation by opening the collapsed section below.
 
 <details>
 
-<summary>Implementation</summary>
+<summary>Pseudocode implementation</summary>
 
 > The provided code snippets are pseudocode representations. You can find the actual in [Account Based (Stateful) Implementation in Solidity](Statefull)
 
@@ -150,11 +150,11 @@ contract TicTacToe {
 
 The Account-Based paradigm, in its stateless form, allows for executing smart contract functions without maintaining any internal state.
 
-You can see the provided implementation by opening the collapsed section below.
+You can see the provided pseudocode implementation by opening the collapsed section below.
 
 <details>
 
-<summary>Implementation</summary>
+<summary>Pseudocode implementation</summary>
 
 > The provided code snippets are pseudocode representations. 
 You can find the actual in [Account Based (Stateless) Implementation in Anchor for Solana](Stateless)
@@ -283,11 +283,11 @@ pub fn timeout(ctx: TimeoutCtx)  {
 
 In the UTXO-Based paradigm, we adapted the Tic Tac Toe game to utilize the unique principles of this model.
 
-You can see the provided implementation by opening the collapsed section below.
+You can see the provided pseudocode implementation by opening the collapsed section below.
 
 <details>
 
-<summary>Implementation</summary>
+<summary>Pseudocode implementation</summary>
 
 ```yaml
 tx1TicTacToe
