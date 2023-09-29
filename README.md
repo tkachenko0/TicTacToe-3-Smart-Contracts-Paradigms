@@ -6,11 +6,6 @@ Hello, in this repository, we explore the three fundamental smart contract parad
 
 The aim of this project is to provide a comprehensive understanding of these smart contract paradigms and their real-world implications. By scaffolding a familiar game (Tic Tac Toe) in each paradigm, we offer practical insights into the differences, challenges, and advantages of each approach.
 
-> Please note that the code snippets provided in this README are pseudocode representations for illustration purposes. You can find the actual implementation in the following folders:
-
-- [Account Based (Stateful) Implementation in Solidity](Statefull)
-- [Account Based (Stateless) Implementation in Anchor for Solana](Stateless)
-
 ## Smart Contract Paradigms
 
 Smart contracts are self-executing, immutable pieces of code that automate and enforce the execution of predefined agreements on a blockchain. These agreements can range from simple transactions to complex decentralized applications (DApps). To better understand the implementations in this project, let's explore three primary smart contract paradigms:
