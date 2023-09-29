@@ -35,13 +35,11 @@ Stateless contracts are contracts that do not maintain their own state. They exe
 
 The UTXO (Unspent Transaction Output) based paradigm is famously associated with Bitcoin and some other cryptocurrencies. 
 
-UTXOs are unspent transaction outputs that are created when a transaction is executed and they are consumed when a new transaction is executed. UTXOs are the primary mechanism for transferring value in the UTXO-based paradigm.
+UTXOs are unspent transaction outputs that are created when a transaction is executed and they are consumed when a new transaction is executed. 
 
-In this paradigm:
+In this paradigm each transaction consumes one or more UTXOs and creates one or more new UTXOs and each UTXO can only be consumed once.
 
-- Each transaction consumes one or more UTXOs and creates one or more new UTXOs and each UTXO can only be consumed once.
-- Instead of traditional accounts with balances, UTXO-based blockchains use a system of discrete transaction outputs, each with a specific value.
-- UTXO-based systems are very simple. However, they can be less flexible for complex operations.
+UTXO-based systems are very simple. However, they can be less flexible for complex operations.
 
 Understanding these smart contract paradigms is crucial when developing blockchain applications, as they influence how contracts handle state, transitions, and security. In the following sections, we'll explore how each of these paradigms has been applied to our Tic Tac Toe game, providing real-world examples of their capabilities and limitations.
 
@@ -61,17 +59,11 @@ The Account-Based paradigm, in its stateless form, allows for executing smart co
 
 ### UTXO Based Implementation
 
-In the UTXO-Based paradigm, we adapted the Tic Tac Toe game to utilize the unique principles of this model. This implementation demonstrates how state transitions occur through the consumption and creation of Unspent Transaction Outputs. 
-
-The Account-Based paradigm, in its stateless form, allows for executing smart contract functions without maintaining any internal state. 
-
-## Conclusions
-
-In summary, each smart contract paradigm presented unique challenges and considerations during the development of our Tic Tac Toe game. These challenges highlight the trade-offs and nuances of each paradigm and underscore the importance of choosing the right one for a specific use case. As we continue to explore these paradigms, we gain a deeper appreciation for their strengths and limitations in the world of blockchain development.
+In the UTXO-Based paradigm, we adapted the Tic Tac Toe game to utilize the unique principles of this model. 
 
 ## Contributing 🙌
 
-We welcome contributions to this project from the blockchain community! If you're interested in getting involved, here is an idea: note that while we have implemented Tic Tac Toe game for Ethereum using solidity (Statefull) and for Solana using Rust (Stateless), we currently only have a scaffolded pseudocode for the UTXO-based paradigm.
+We welcome contributions to this project! If you're interested, here is an idea: note that while we have implemented Tic Tac Toe game for Ethereum using solidity (Statefull) and for Solana using Rust (Stateless), we currently only have a scaffolded pseudocode for the UTXO-based paradigm.
 
 ## Acknowledgments 🙏
 
