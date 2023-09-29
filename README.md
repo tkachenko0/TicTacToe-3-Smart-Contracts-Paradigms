@@ -12,7 +12,7 @@ Smart contracts are self-executing, immutable pieces of code that automate and e
 
 ### Account-Based Paradigm
 
-The Account-Based paradigm, exemplified by Ethereum and many other blockchain platforms, operates differently from the UTXO model. 
+The Account-Based paradigm, exemplified by [Ethereum](https://ethereum.org/en/) and many other blockchain platforms, operates differently from the UTXO model. 
 
 In this paradigm:
 
@@ -63,11 +63,17 @@ In the UTXO-Based paradigm, we adapted the Tic Tac Toe game to utilize the uniqu
 
 ## Contributing 🙌
 
-We welcome contributions to this project! If you're interested, here is an idea: note that while we have implemented Tic Tac Toe game for Ethereum using solidity (Statefull) and for Solana using Rust (Stateless), we currently only have a scaffolded pseudocode for the UTXO-based paradigm.
+We welcome contributions to this project! If you're interested, here is an idea: note that while we have implemented Tic Tac Toe game for [Ethereum](https://ethereum.org/en/) using [Solidity](https://soliditylang.org) (Statefull) and for [Solana](https://solana.com) using [Rust](https://www.rust-lang.org) with the [Anchor framework](https://www.anchor-lang.com) (Stateless), we currently only have a scaffolded pseudocode for the UTXO-based paradigm.
 
 ## Acknowledgments 🙏
 
 This project drew inspiration from the speakers and content of the [4th Scientific School on Blockchain & Distributed Ledger Technologies](https://dlt-school.github.io) held at the University of Cagliari.
+
+Here are some of the resources that we found particularly useful:
+
+- [UTXO vs. Account-Based Chains](https://academy.glassnode.com/concepts/utxo#)
+- [A Deep Dive into Solana Account Model](https://medium.com/@lianxiongdi/a-deep-dive-into-solana-account-model-1-introduction-7b0408656593)
+- [An Introduction to the Solana Account Model](https://www.quicknode.com/guides/solana-development/getting-started/an-introduction-to-the-solana-account-model)
 
 ## License 📜
 
