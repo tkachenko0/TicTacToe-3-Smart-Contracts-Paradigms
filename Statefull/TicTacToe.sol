@@ -30,7 +30,7 @@ contract TicTacToe {
     }
 
     function makeMove(uint8 row, uint8 col) external payable  {
-        require(msg.sender == currentPlayer, "It's not your turn");
+        require(msg.sender == currentPlayer, "It is not your turn");
         require(row < 3 && col < 3, "Invalid cell coordinates");
         require(board[row][col] == CellState.Empty, "Cell is already occupied");
         require(block.number < gameTimeoutBlock, "Timeout was reached");

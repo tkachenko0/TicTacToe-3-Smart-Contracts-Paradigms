@@ -94,7 +94,7 @@ contract TicTacToe {
 
 ```solidity
     function makeMove(uint8 row, uint8 col) external payable  {
-        require(msg.sender == currentPlayer, "It's not your turn");
+        require(msg.sender == currentPlayer, "It is not your turn");
         require(row < 3 && col < 3, "Invalid cell coordinates");
         require(board[row][col] == CellState.Empty, "Cell is already occupied");
         require(block.number < gameTimeoutBlock, "Timeout was reached");
@@ -144,8 +144,8 @@ The Account-Based paradigm, in its stateless form, allows for executing smart co
 > The provided code snippets are pseudocode representations. 
 You can find the actual in [Account Based (Stateless) Implementation in Anchor for Solana](Stateless)
 with:
-- [Anchor on-chain program](Stateless/tic-tac-toe-anchor/programs/tic-tac-toe-anchor/src/lib.rs)
-- [client in TypeScript](Stateless/tic-tac-toe-anchor/tests/test_tic_tac_toe.ts)
+- [Anchor on-chain code](Stateless/tic-tac-toe-anchor/programs/tic-tac-toe-anchor/src/lib.rs)
+- [TypeScript client code](Stateless/tic-tac-toe-anchor/tests/test_tic_tac_toe.ts)
 
 ```rust
 // Enum representing the game board cell
