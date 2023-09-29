@@ -2,7 +2,11 @@
 
 ## Introduction 👋
 
-Hello, in this repository, we explore the three fundamental smart contract paradigms: UTXO-based, Account-Based (Stateless and Stateful).
+Hello, in this repository, we explore the three fundamental smart contract paradigms: 
+- UTXO-based
+- Account-Based 
+    - Stateless
+    - Stateful
 
 The aim of this project is to provide a comprehensive understanding of these smart contract paradigms and their real-world implications. By scaffolding a familiar game (Tic Tac Toe) in each paradigm, we offer practical insights into the differences, challenges, and advantages of each approach.
 
