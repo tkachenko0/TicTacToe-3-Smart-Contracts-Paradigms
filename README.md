@@ -1,20 +1,5 @@
 # TicTacToe in 3 Smart Contracts Paradigms 🧩
 
-- [Introduction 👋](#introduction---)
-- [Smart Contract Paradigms](#smart-contract-paradigms---)
-+ [Account-Based Paradigm](#account-based-paradigm)
-    - [Stateful Contracts](#stateful-contracts)
-    - [Stateless Contracts](#stateless-contracts)
-+ [UTXO Based Paradigm](#utxo-based-paradigm)
-- [Tic Tac Toe 🧩](#tic-tac-toe---)
-+ [Account Based (Stateful) Implementation](#account-based--stateful--implementation)
-+ [Account Based (Stateless) Implementation](#account-based--stateless--implementation)
-+ [UTXO Based Implementation](#utxo-based-implementation)
-- [Conclusions](#conclusions)
-- [Contributing 🙌](#contributing---)
-- [Acknowledgments 🙏](#acknowledgments---)
-- [License 📜](#license---)
-
 ## Introduction 👋
 
 Hello, in this repository, we explore the three fundamental smart contract paradigms: UTXO-based, Account-Based (Stateless and Stateful).
