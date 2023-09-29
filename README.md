@@ -1,5 +1,11 @@
 # TicTacToe in 3 Smart Contracts Paradigms 🧩
 
+⁣⭕❕⭕❕❌
+➖➕➖➕➖
+⭕❕⁣❌❕⭕
+➖➕➖➕➖
+❌❕❌❕⭕
+
 ## Introduction 👋
 
 Hello, in this repository, we explore the three fundamental smart contract paradigms: 
