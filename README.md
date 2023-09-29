@@ -6,6 +6,11 @@ Hello, in this repository, we explore the three fundamental smart contract parad
 
 The aim of this project is to provide a comprehensive understanding of these smart contract paradigms and their real-world implications. By scaffolding a familiar game (Tic Tac Toe) in each paradigm, we offer practical insights into the differences, challenges, and advantages of each approach.
 
+> Please note that the code snippets provided in this README are pseudocode representations for illustration purposes. You can find the actual implementation in the following folders:
+
+- [Account Based (Stateful) Implementation in Solidity](Statefull)
+- [Account Based (Stateless) Implementation in Anchor for Solana](Stateless)
+
 ## Smart Contract Paradigms
 
 Smart contracts are self-executing, immutable pieces of code that automate and enforce the execution of predefined agreements on a blockchain. These agreements can range from simple transactions to complex decentralized applications (DApps). To better understand the implementations in this project, let's explore three primary smart contract paradigms:
@@ -53,6 +58,8 @@ In this section, we provide an overview of the Tic Tac Toe game implemented in t
 
 Account-Based smart contracts, when stateful, have the capability to maintain and modify their own internal state.
 
+> The provided code snippets are pseudocode representations. You can find the actual in [Account Based (Stateful) Implementation in Solidity](Statefull)
+
 ```solidity
 contract TicTacToe {
     address public playerA;
@@ -82,10 +89,10 @@ contract TicTacToe {
         currentPlayer = playerA;
     }
 
+    ...
 ```
 
 ```solidity
-
     function makeMove(uint8 row, uint8 col) external payable  {
         require(msg.sender == currentPlayer, "It's not your turn");
         require(row < 3 && col < 3, "Invalid cell coordinates");
@@ -118,11 +125,9 @@ contract TicTacToe {
     function checkWinner() internal view returns (bool) {
         // You can find the implementation of this function in the full code
     }
-
 ```
 
 ```solidity
-
     function timeout() external {
         require(block.number >= gameTimeoutBlock, "Timeout has not been reached yet");
         address allowedPlayer = currentPlayer == playerA ? playerB : playerA;
@@ -130,14 +135,23 @@ contract TicTacToe {
 
         // Transfer address(this).balance to allowedPlayer
     }
-
 ```
 
 ### Account Based (Stateless) Implementation
 
 The Account-Based paradigm, in its stateless form, allows for executing smart contract functions without maintaining any internal state.
 
+> The provided code snippets are pseudocode representations. You can find the actual in [Account Based (Stateless) Implementation in Anchor for Solana](Stateless)
+
 ```rust
+// Enum representing the game board cell
+pub enum Symbol {
+    SymbolX,
+    SymbolO,
+    SymbolEmpty,
+}
+
+// Struct representing the game state
 pub struct GameData {
     pub player_a: Pubkey,
     pub player_b: Pubkey,
@@ -149,63 +163,37 @@ pub struct GameData {
     pub required_amount: u64,
 }
 
-pub struct InitializeCtx<'info> {
-    #[account(mut)]
-    pub initializer: Signer<'info>,
-    #[account(
-        init,
-        payer = initializer,
-        seeds = [_loby_name.as_ref()],
-        bump,
-        space = 8 + GameData::INIT_SPACE
-    )]
-    pub game_data: Account<'info, GameData>,
-    pub player_a: SystemAccount<'info>,
-    pub player_b: SystemAccount<'info>,
-    pub system_program: Program<'info, System>,
+// Context of accounts passed to the initialize function
+pub struct InitializeCtx {
+    pub initializer: Signer,
+    pub game_data: GameData, // initialized by the 'initializer'
+    pub player_a: SystemAccount,
+    pub player_b: SystemAccount,
 }
 
-pub fn initialize(
-    ctx: Context<InitializeCtx>,
-    _loby_name: String,
-    required_amount: u64,
-    delay_slots: u64,
-) -> Result<()> {
-    msg!("Initializing game");
-    let game_data = &mut ctx.accounts.game_data;
-    game_data.player_a = *ctx.accounts.player_a
-    game_data.player_b = *ctx.accounts.player_b
+pub fn initialize(ctx: InitializeCtx, required_amount: u64, delay_slots: u64)  {
+    let game_data =  ctx.accounts.game_data;
+    game_data.player_a = ctx.accounts.player_a
+    game_data.player_b = ctx.accounts.player_b
     game_data.turn_a = true;
     game_data.player_a_has_deposited = false;
     game_data.player_b_has_deposited = false;
     game_data.board = [[Symbol::SymbolEmpty; 3]; 3];
-    game_data.end_slot = Clock::get()?.slot + delay_slots;
+    game_data.end_slot = Clock::current_slot + delay_slots;
     game_data.required_amount = required_amount;
-    Ok(())
 }
 ```
 
 ```rust
-pub struct MakeMoveCtx<'info> {
-    #[account(mut)]
-    pub player: Signer<'info>,
-    #[account(
-        mut,
-        seeds = [_loby_name.as_ref()],
-        bump,
-    )]
-    pub game_data: Account<'info, GameData>,
+pub struct MakeMoveCtx {
+    pub player: Signer,
+    pub game_data: GameData
     pub system_program: Program<'info, System>,
 }
 
-pub fn make_move(
-    ctx: Context<MakeMoveCtx>,
-    _loby_name: String,
-    row: u8,
-    col: u8,
-) -> Result<()> {
-    let game_data = &mut ctx.accounts.game_data;
-    let player = &ctx.accounts.player;
+pub fn make_move(ctx: MakeMoveCtx, row: u8, col: u8)  {
+    let game_data = ctx.accounts.game_data;
+    let player = ctx.accounts.player;
 
     let (current_player, deposited) = if game_data.turn_a {
         (game_data.player_a, game_data.player_a_has_deposited)
@@ -214,18 +202,7 @@ pub fn make_move(
     };
 
     if !deposited {
-        msg!("Player deposits");
-        let transfer_instruction = anchor_lang::solana_program::system_instruction::transfer(
-            &player.key(),
-            &game_data.key(),
-            game_data.required_amount,
-        );
-
-        anchor_lang::solana_program::program::invoke(
-            &transfer_instruction,
-            &[player.to_account_info(), game_data.to_account_info()],
-        )
-        .unwrap();
+        // make 'player' deposit 'game_data.required_amount' to 'game_data' account
 
         if game_data.turn_a {
             game_data.player_a_has_deposited = true;
@@ -234,22 +211,12 @@ pub fn make_move(
         }
     }
 
-    require!(player.key == &current_player, CustomError::InvalidPlayer);
-    require!(
-        Clock::get()?.slot < game_data.end_slot,
-        CustomError::TimeoutReached
-    );
-    require!(row < 3 && col < 3, CustomError::InvalidPosition);
-    require!(
-        game_data.board[row as usize][col as usize] == Symbol::SymbolEmpty,
-        CustomError::CellOccupied
-    );
+    require!(player.key == current_player, Err::InvalidPlayer);
+    require!(Clock::current_slot < game_data.end_slot, Err::TimeoutReached);
+    require!(row < 3 && col < 3, Err::InvalidPosition);
+    require!(game_data.board[row as usize][col as usize] == Symbol::SymbolEmpty,Err::CellOccupied);
 
-    let player_symbol = if game_data.turn_a {
-        Symbol::SymbolX
-    } else {
-        Symbol::SymbolO
-    };
+    let player_symbol = if game_data.turn_a { Symbol::SymbolX } else { Symbol::SymbolO};
     game_data.board[row as usize][col as usize] = player_symbol;
     game_data.turn_a = !game_data.turn_a;
 
@@ -259,51 +226,38 @@ pub fn make_move(
         **player.to_account_info().try_borrow_mut_lamports()? += amount;
         **game_data.to_account_info().try_borrow_mut_lamports()? -= amount;
     }
+}
 
-    Ok(())
+fn check_winner(board: [[Symbol; 3]; 3]) -> bool {
+    // You can find the implementation of this function in the full code
 }
 ```
 
 ```rust
-pub struct TimeoutCtx<'info> {
-    #[account(mut)]
-    pub player: Signer<'info>,
-    #[account(
-        mut,
-        seeds = [_loby_name.as_ref()],
-        bump,
-    )]
-    pub game_data: Account<'info, GameData>,
+// Context of accounts passed to the timeout function
+pub struct TimeoutCtx {
+    pub player: Signer,
+    pub game_data: GameData
     pub system_program: Program<'info, System>,
 }
 
-pub fn timeout(ctx: Context<TimeoutCtx>, _loby_name: String) -> Result<()> {
-    let game_data = &mut ctx.accounts.game_data;
-    let player = &ctx.accounts.player;
+pub fn timeout(ctx: TimeoutCtx)  {
+    let game_data = ctx.accounts.game_data;
+    let player = ctx.accounts.player;
 
-    let allowed_player = if game_data.turn_a {
-        game_data.player_b
-    } else {
-        game_data.player_a
-    };
+    let allowed_player = if game_data.turn_a { game_data.player_b } else { game_data.player_a };
 
-    require!(player.key == &allowed_player, CustomError::InvalidPlayer);
-    require!(
-        Clock::get()?.slot >= game_data.end_slot,
-        CustomError::TimeoutNotReached
-    );
+    require!(player.key == &allowed_player, Err::InvalidPlayer);
+    require!(Clock::current_slot >= game_data.end_slot, Err::TimeoutNotReached);
 
-    let amount = game_data.required_amount * 2;
-    **player.to_account_info().try_borrow_mut_lamports()? += amount;
-    **game_data.to_account_info().try_borrow_mut_lamports()? = amount;
-
-    Ok(())
+    // Make 'player' withdraw 'game_data.required_amount * 2' from 'game_data' account
 }
 ```
 
 ### UTXO Based Implementation
 
 In the UTXO-Based paradigm, we adapted the Tic Tac Toe game to utilize the unique principles of this model.
+
 
 ```yaml
 tx1TicTacToe
