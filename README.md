@@ -144,7 +144,7 @@ pub struct GameData {
     pub turn_a: bool,
     pub player_a_has_deposited: bool,
     pub player_b_has_deposited: bool,
-    pub board: [[Symbol; 3]; 3], // 0 stands for 'Empty', 1 for 'X' and 2 for 'O'
+    pub board: [[Symbol; 3]; 3],
     pub end_slot: u64,
     pub required_amount: u64,
 }
