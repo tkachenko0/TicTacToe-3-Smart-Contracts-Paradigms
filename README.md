@@ -1,7 +1,5 @@
 # TicTacToe in 3 Smart Contracts Paradigms 🎮
 
-![GitHub](https://img.shields.io/github/license/tkachenko0/TicTacToe-3-Smart-Contracts-Paradigms) 📜
-
 ## Introduction 👋
 
 Hello, in this repository, we explore the three fundamental smart contract paradigms: UTXO-based, Account-Based (Stateless and Stateful).
