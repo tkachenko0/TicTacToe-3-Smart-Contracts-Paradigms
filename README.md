@@ -53,7 +53,7 @@ In this section, we provide an overview of the Tic Tac Toe game implemented in t
 
 > Don't worry, we won't bore you with a tutorial on how to play Tic Tac Toe – we trust that you've all mastered it during those 'productive' school days when lessons just couldn't compete with this classic game. 😉
 
-### Account Based (Stateful) Implementation
+### Tic Tac Toe in the Stateful Paradigm
 
 Account-Based smart contracts, when stateful, have the capability to maintain and modify their own internal state.
 
@@ -145,7 +145,7 @@ contract TicTacToe {
 
 </details>
 
-### Account Based (Stateless) Implementation
+### Tic Tac Toe in the Stateless Paradigm
 
 The Account-Based paradigm, in its stateless form, allows for executing smart contract functions without maintaining any internal state.
 
@@ -278,7 +278,7 @@ pub fn timeout(ctx: TimeoutCtx)  {
 
 </details>
 
-### UTXO Based Implementation
+### Tic Tac Toe in the UTXO Paradigm
 
 In the UTXO-Based paradigm, we adapted the Tic Tac Toe game to utilize the unique principles of this model.
 
