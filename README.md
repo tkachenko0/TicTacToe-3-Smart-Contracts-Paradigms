@@ -1,4 +1,19 @@
-# TicTacToe in 3 Smart Contracts Paradigms 🎮
+# TicTacToe in 3 Smart Contracts Paradigms 🧩
+
+- [Introduction 👋](#introduction---)
+- [Smart Contract Paradigms](#smart-contract-paradigms---)
++ [Account-Based Paradigm](#account-based-paradigm)
+    - [Stateful Contracts](#stateful-contracts)
+    - [Stateless Contracts](#stateless-contracts)
++ [UTXO Based Paradigm](#utxo-based-paradigm)
+- [Tic Tac Toe 🧩](#tic-tac-toe---)
++ [Account Based (Stateful) Implementation](#account-based--stateful--implementation)
++ [Account Based (Stateless) Implementation](#account-based--stateless--implementation)
++ [UTXO Based Implementation](#utxo-based-implementation)
+- [Conclusions](#conclusions)
+- [Contributing 🙌](#contributing---)
+- [Acknowledgments 🙏](#acknowledgments---)
+- [License 📜](#license---)
 
 ## Introduction 👋
 
@@ -6,7 +21,7 @@ Hello, in this repository, we explore the three fundamental smart contract parad
 
 The aim of this project is to provide a comprehensive understanding of these smart contract paradigms and their real-world implications. By scaffolding a familiar game (Tic Tac Toe) in each paradigm, we offer practical insights into the differences, challenges, and advantages of each approach.
 
-## Smart Contract Paradigms 🧠
+## Smart Contract Paradigms
 
 Smart contracts are self-executing, immutable pieces of code that automate and enforce the execution of predefined agreements on a blockchain. These agreements can range from simple transactions to complex decentralized applications (DApps). To better understand the implementations in this project, let's explore three primary smart contract paradigms:
 
@@ -51,15 +66,15 @@ In this section, we provide an overview of the Tic Tac Toe game implemented in t
 
 > Don't worry, we won't bore you with a tutorial on how to play Tic Tac Toe – we trust that you've all mastered it during those 'productive' school days when lessons just couldn't compete with this classic game. 😉
 
-### Account-Based (Stateful) Implementation
+### Account Based (Stateful) Implementation
 
 Account-Based smart contracts, when stateful, have the capability to maintain and modify their own internal state.
 
-### Account-Based (Stateless) Implementation
+### Account Based (Stateless) Implementation
 
 The Account-Based paradigm, in its stateless form, allows for executing smart contract functions without maintaining any internal state.
 
-### UTXO-Based Implementation
+### UTXO Based Implementation
 
 In the UTXO-Based paradigm, we adapted the Tic Tac Toe game to utilize the unique principles of this model. This implementation demonstrates how state transitions occur through the consumption and creation of Unspent Transaction Outputs. 
 
