@@ -141,7 +141,11 @@ contract TicTacToe {
 
 The Account-Based paradigm, in its stateless form, allows for executing smart contract functions without maintaining any internal state.
 
-> The provided code snippets are pseudocode representations. You can find the actual in [Account Based (Stateless) Implementation in Anchor for Solana](Stateless)
+> The provided code snippets are pseudocode representations. 
+You can find the actual in [Account Based (Stateless) Implementation in Anchor for Solana](Stateless)
+with:
+- [Anchor on-chain program](Stateless/tic-tac-toe-anchor/programs/tic-tac-toe-anchor/src/lib.rs)
+- [client in TypeScript](Stateless/tic-tac-toe-anchor/tests/test_tic_tac_toe.ts)
 
 ```rust
 // Enum representing the game board cell
@@ -171,6 +175,7 @@ pub struct InitializeCtx {
     pub player_b: SystemAccount,
 }
 
+// End point to initialize the game
 pub fn initialize(ctx: InitializeCtx, required_amount: u64, delay_slots: u64)  {
     let game_data =  ctx.accounts.game_data;
     game_data.player_a = ctx.accounts.player_a
@@ -185,12 +190,14 @@ pub fn initialize(ctx: InitializeCtx, required_amount: u64, delay_slots: u64)  {
 ```
 
 ```rust
+// Context of accounts passed to the make_move function
 pub struct MakeMoveCtx {
     pub player: Signer,
     pub game_data: GameData
     pub system_program: Program<'info, System>,
 }
 
+// End point to make a move
 pub fn make_move(ctx: MakeMoveCtx, row: u8, col: u8)  {
     let game_data = ctx.accounts.game_data;
     let player = ctx.accounts.player;
@@ -241,6 +248,7 @@ pub struct TimeoutCtx {
     pub system_program: Program<'info, System>,
 }
 
+// End point to withdraw funds after timeout
 pub fn timeout(ctx: TimeoutCtx)  {
     let game_data = ctx.accounts.game_data;
     let player = ctx.accounts.player;
