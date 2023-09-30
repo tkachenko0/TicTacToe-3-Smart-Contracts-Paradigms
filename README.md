@@ -88,7 +88,7 @@ If you want to transfer an UTXO to Alice, you can specify that the witness shoul
 ```yaml
 # tx1 (An Actor)
 inputs:
-  txA ← ...		# txA holds 1:T
+  txA ← ...	# txA holds 1:T
   # other inputs
 outputs:
     1:T → fun sigA: versigA(rtx, sig)
@@ -356,8 +356,8 @@ You can see the provided pseudocode implementation by opening the collapsed sect
 ```yaml
 tx1TicTacToe
 inputs:
-  txA ← sigA(tx1TicTacToe)		# txA holds 1:T
-  txB ← sigB(tx1TicTacToe)		# txB holds 1:T
+  txA ← sigA(tx1TicTacToe) # txA holds 1:T
+  txB ← sigB(tx1TicTacToe) # txB holds 1:T
 outputs:
   2:T → fun sig, row, col [board=[['Empty'; 3]; 3], turnA=true]:
           (
