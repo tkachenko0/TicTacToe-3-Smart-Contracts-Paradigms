@@ -7,7 +7,7 @@ sidebar_position: 1
 Account-Based smart contracts, when stateful, have the capability to maintain and modify their own internal state. The contract itself maintains the state of the game. It doesn't rely on external systems to keep track of the game board or whose turn it is. Instead, it updates its internal state based on the actions of the players tracking the game board, whose turn it is, and whether someone has won.
 
 :::info
-The provided code snippets are pseudocode representations. You can find the actual in [Account Based (Stateful) Implementation in Solidity](https://github.com/tkachenko0/TicTacToe-Blockchain/tree/main/Statefull)
+The provided code snippets are pseudocode representations. You can find the actual code in [Account Based (Stateful) Implementation in Solidity](https://github.com/tkachenko0/TicTacToe-Blockchain/tree/main/Statefull)
 :::
 
 When deployed, the contract requires certain parameters to start a game, including the addresses of two players (`playerA` and `playerB`), the number of blocks until the game times out (`gameTimeoutBlock`), and the required deposit in to participate (`requiredDeposit`). The contract also maintains the current player (`currentPlayer`), the state of the board (`board`), and whether each player has deposited (`playerAhasDeposited` and `playerBhasDeposited`).
