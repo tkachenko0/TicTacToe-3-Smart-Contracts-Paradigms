@@ -54,12 +54,9 @@ Within the Account-Based paradigm, we can further categorize smart contracts int
 
 #### Stateful Contracts
 
-Stateful contracts are contracts that maintain and manage their own state. They can store data, update it based on transactions, and execute complex logic.
-Stateful contracts are suitable for applications that require persistent storage and complex business logic, such as games, decentralized finance (DeFi) platforms, and more.
+Stateful contracts maintain and manage their own state. They can store data, update it based on transactions, and execute complex logic. 
 
-Think of a stateful contract like a bank account. In a bank account, you have a balance, and you can perform various transactions like depositing money, withdrawing money, or checking your balance. The bank account itself maintains the state, which is your balance. When you deposit money, the balance increases, and when you withdraw money, the balance decreases. The bank account doesn't rely on external systems to track your balance; it manages it internally.
-
-Similarly, in a stateful smart contracts, the contract itself maintains the state of the game and it doesn't rely on external data.
+In a stateful smart contracts, the contract itself maintains the state of the game and it doesn't rely on external data. Stateful contracts are suitable for applications that require persistent storage and complex business logic, such as games, decentralized finance (DeFi) platforms, and more.
 
 <img src="images/example_stateful.png"/>
 
