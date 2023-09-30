@@ -136,7 +136,7 @@ const instruction = new TransactionInstruction({
 });
 ```
 
-- **UTXO-Based Contracts**: Also UTXO-based contracts can be highly parallelizable. In this paradigm, each transaction consumes specific UTXOs and creates new ones. These UTXOs are typically disjoint and do not overlap in terms of state. As a result, multiple transactions can be processed in parallel
+- **UTXO-Based Contracts**: also UTXO-based contracts can be highly parallelizable. In this paradigm, each transaction consumes specific UTXOs and creates new ones. These UTXOs are typically disjoint and do not overlap in terms of state. As a result, multiple transactions can be processed in parallel
 
 ## Tic Tac Toe in the Stateful Paradigm 🧩
 
