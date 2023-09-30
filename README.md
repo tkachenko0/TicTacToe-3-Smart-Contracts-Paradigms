@@ -26,11 +26,11 @@ Hello, in this repository, we explore the three fundamental smart contract parad
 
 The aim of this project is to provide a comprehensive understanding of these smart contract paradigms and their real-world implications. By scaffolding a familiar game (Tic Tac Toe) in each paradigm, we offer practical insights into the differences, challenges, and advantages of each approach.
 
-⁣⭕❕⭕❕❌ <br>
-➖➕➖➕➖ <br>
-⭕❕⁣❌❕⭕ <br>
-➖➕➖➕➖ <br>
-❌❕❌❕⭕ <br>
+⁣⭕❕⭕❕❌ <br/>
+➖➕➖➕➖ <br/>
+⭕❕⁣❌❕⭕ <br/>
+➖➕➖➕➖ <br/>
+❌❕❌❕⭕ <br/>
 
 So we will provide an overview of the Tic Tac Toe game implemented in those three different smart contract paradigms. Each implementation serves as a practical demonstration of how these paradigms handle state, transitions, and logic execution.
 
@@ -122,8 +122,7 @@ Parallelizability is the ability to execute multiple transactions concurrently. 
 
 - **Stateless Contracts**: **parallelizable**, since they do not maintain their own state and instead rely on external accounts to provide data, they often operate on distinct and isolated parts of the state. 
 
-For example, in [Solana](https://solana.com), for each passed account in an instruction, we need to 
-specify if the account is read-only or writable:
+For example, in [Solana](https://solana.com), for each passed account in an instruction, we need to specify if the account is read-only or writable:
 
 ```typescript
 const instruction = new TransactionInstruction({
