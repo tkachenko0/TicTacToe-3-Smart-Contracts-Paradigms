@@ -22,7 +22,7 @@ outputs:
         txo.board[row, col] == 'Empty' and
         row >= 0 and row < 3 and col >= 0 and col < 3 and
         rtx[0].board[otherx, othery] == rtxo.board[otherx, othery] ∀(otherx,othery) != (row, col) and
-        ((rtxo.turnA and rtx[0].board[row, col] == 'X') or (!rtxo.turnA and rtx[0].board[pos_x, pos_y] == 'O')) and
+        ((rtxo.turnA and rtx[0].board[row, col] == 'X') or (!rtxo.turnA and rtx[0].board[row, col] == 'O')) and
         # Checking the turn
         rtx[0].turnA == !rtxo.turnA and
         ((rtxo.turnA and versig(Alice, rtx, sig)) or (!rtxo.turnA and versig(Bob, rtx, sig))) and
@@ -50,3 +50,4 @@ outputs:
         )
     ) and
     |rtx.inputs|==1
+    

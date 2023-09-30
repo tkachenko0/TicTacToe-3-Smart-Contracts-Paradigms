@@ -67,7 +67,7 @@ Similarly, in a stateful smart contracts, the contract itself maintains the stat
 
 Stateless contracts are contracts that do not maintain their own state. Instead, it relies on external accounts to provide data and instructions for its execution.
 
-In stateless contracts, where contracts do not maintain their own state , ensuring the security of the system becomes paramount. One security consideration can be the **accesss controll**: it is crucial to implement robust access control mechanisms to ensure that only authorized entities can modify the data of an account. This often involves verifying the signatures of transactions and ensuring that the sender has the necessary permissions to perform specific actions. Access control prevents unauthorized modifications to the contract's data.
+In stateless contracts, where contracts do not maintain their own state , ensuring the security of the system becomes paramount. One security consideration can be the **access controll**: it is crucial to implement robust access control mechanisms to ensure that only authorized entities can modify the data of an account. This often involves verifying the signatures of transactions and ensuring that the sender has the necessary permissions to perform specific actions. Access control prevents unauthorized modifications to the contract's data.
 
 <img src="images/example_stateless.png"/>
 
@@ -82,7 +82,7 @@ In the UTXO-based paradigm, the "script" and "witness" are fundamental concepts 
 
 Understanding these smart contract paradigms is crucial when developing blockchain applications, as they influence how contracts handle state, transitions, and security. In the following sections, we'll explore how each of these paradigms has been applied to our Tic Tac Toe game, providing real-world examples of their capabilities and limitations.
 
-#### Witness Constrains
+#### Witness Constraints
 
 If you want to transfer an UTXO to Alice, you can specify that the witness should be the signature of Alice.
 
@@ -426,7 +426,7 @@ outputs:
         txo.board[row, col] == 'Empty' and
         row >= 0 and row < 3 and col >= 0 and col < 3 and
         rtx[0].board[otherx, othery] == rtxo.board[otherx, othery] ∀(otherx,othery) != (row, col) and
-        ((rtxo.turnA and rtx[0].board[row, col] == 'X') or (!rtxo.turnA and rtx[0].board[pos_x, pos_y] == 'O')) and
+        ((rtxo.turnA and rtx[0].board[row, col] == 'X') or (!rtxo.turnA and rtx[0].board[row, col] == 'O')) and
         # Checking the turn
         rtx[0].turnA == !rtxo.turnA and
         ((rtxo.turnA and versig(Alice, rtx, sig)) or (!rtxo.turnA and versig(Bob, rtx, sig))) and
