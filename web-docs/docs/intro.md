@@ -22,7 +22,5 @@ So we will provide an overview of the Tic Tac Toe game implemented in those thre
 
 
 :::note
-
 Don't worry, we won't bore you with a tutorial on how to play Tic Tac Toe – we trust that you've all mastered it during those 'productive' school days when lessons just couldn't compete with this classic game. 😉
-
 :::

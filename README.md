@@ -20,7 +20,7 @@ So we will provide an overview of the Tic Tac Toe game implemented in those thre
 
 > Don't worry, we won't bore you with a tutorial on how to play Tic Tac Toe – we trust that you've all mastered it during those 'productive' school days when lessons just couldn't compete with this classic game. 😉
 
-## Smart Contract Paradigms
+## Smart Contract Paradigms 📗
 
 Smart contracts are self-executing, immutable pieces of code that automate and enforce the execution of predefined agreements on a blockchain. These agreements can range from simple transactions to complex decentralized applications (DApps). To better understand the implementations in this project, let's explore three primary smart contract paradigms:
 
