@@ -60,6 +60,8 @@ Think of a stateful contract like a bank account. In a bank account, you have a 
 
 Similarly, in a stateful smart contracts, the contract itself maintains the state of the game and it doesn't rely on external data.
 
+<img src="images/example_stateful.png"/>
+
 #### Stateless Contracts
 
 Stateless contracts are contracts that do not maintain their own state. Instead, it relies on external accounts to provide data and instructions for its execution.
