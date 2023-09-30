@@ -118,6 +118,30 @@ outputs:
     ... → fun x [myVar=3]: rtx[0].myVar == ctxo[0].myVar
 ```
 
+## Parallelizability
+
+Parallelizability is the ability to execute multiple transactions concurrently. In the context of smart contracts, parallelizability is an important consideration, as it can impact the scalability and efficiency of blockchain systems. 
+
+- **Stateful Contracts**: Stateful contracts are inherently **not parallelizable** because they maintain and manage their own state. When multiple transactions attempt to modify the same parts of the state, they can potentially lead to conflicts and race conditions.
+
+- **Stateless Contracts**: Stateless contracts, on the other hand, are highly parallelizable. Since they do not maintain their own state and instead rely on external accounts to provide data, they often operate on distinct and isolated parts of the state. 
+
+For example, [Solana](https://solana.com), for each passed account in an instruction, we need to 
+specify if the account is read-only or writable:
+
+```typescript
+const instruction = new TransactionInstruction({
+    keys: [
+        {pubkey: gameAccount.publicKey, isSigner: true, isWritable: true},
+        {pubkey: gameStateAccount.publicKey, isSigner: false, isWritable: true},
+    ],
+    programId: programId,
+    data: // ...,
+});
+```
+
+- **UTXO-Based Contracts**: Also UTXO-based contracts can be highly parallelizable. In this paradigm, each transaction consumes specific UTXOs and creates new ones. These UTXOs are typically disjoint and do not overlap in terms of state. As a result, multiple transactions can be processed in parallel
+
 ## Tic Tac Toe in the Stateful Paradigm 🧩
 
 Account-Based smart contracts, when stateful, have the capability to maintain and modify their own internal state. The contract itself maintains the state of the game. It doesn't rely on external systems to keep track of the game board or whose turn it is. Instead, it updates its internal state based on the actions of the players tracking the game board, whose turn it is, and whether someone has won.
@@ -409,6 +433,7 @@ outputs:
 ```
 
 </details>
+
 
 ## Contributing 🙌
 
