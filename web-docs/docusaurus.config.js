@@ -8,7 +8,7 @@ const gitHubRepoUrl = 'https://github.com/tkachenko0/TicTacToe-Blockchain';
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: 'Tic Tac Toe Blockchain',
-  tagline: 'Dinosaurs are cool',
+  tagline: 'Exploring the three Smart Contract Paradigms 📗',
   favicon: 'img/favicon.ico',
 
   // Set the production url of your site here
