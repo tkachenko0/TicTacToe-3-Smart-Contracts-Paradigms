@@ -360,10 +360,9 @@ inputs:
   txB ← sigB(tx1TicTacToe)		# txB holds 1:T
 outputs:
   2:T → fun sig, row, col [board=[['Empty', 'Empty', 'Empty']], turnA=true]:
-          
           (
             # timeout reached
-            after N :
+            after N:
                 # allow player B to withdraw all the deposits
                 rtxo.turnA && rtx[0].script: versigB(rtx, sig) && rtx[0].val = 2:T
                 or
@@ -373,40 +372,38 @@ outputs:
           or
           (
             # timeout not reached
-            before N &&
-            rtx[0].script == rtxo[0].script &&
-            # if valid coordinates and right board configuration
-            row >= 0 && row < 3 && col >= 0 && col < 3 &&
-            txo.board[row, col] == 'Empty' &&
-            ((rtxo.turnA && rtx[0].board[row, col] == 'X') or (!rtxo.turnA && rtx[0].board[pos_x, pos_y] == 'O')) &&
-            rtx[0].board[otherx, othery] == rtxo.board[otherx, othery] ∀(otherx,othery) != (row, col) &&
-            # checking the turn
-            rtx[0].turnA == !rtxo.turnA &&
-            ((rtxo.turnA && versigA(rtx, sig)) or (!rtxo.turnA && versigB(rtx, sig))) &&
-            (
-              (
-                # Allow player A to withdraw
-                rtxo.turnA &&
-                isWinner(rtx[0].board, 'Symbol X') &&
-                rtx[0].val = 0:T &&
-                rtx[1].script == versigA(rtx, sig) &&
-                rtx[1].val = 2:T
-              )
-              or
-              (
-                # Allow player B to withdraw
-                !rtxo.turnA &&
-                isWinner(rtx[0].board, 'Symbol O') &&
-                rtx[0].val = 0:T &&
-                rtx[1].script == versigB(rtx, sig) &&
-                rtx[1].val = 2:T
-              )
-              or
-              (
-                # The game is not finished yet
-                rtx[0].val = 2:T
-              )
-            )
+            before N:
+                rtx[0].script == rtxo[0].script &&
+                # if valid coordinates and right board configuration
+                txo.board[row, col] == 'Empty' &&
+                row >= 0 && row < 3 && col >= 0 && col < 3 &&
+                rtx[0].board[otherx, othery] == rtxo.board[otherx, othery] ∀(otherx,othery) != (row, col) &&
+                ((rtxo.turnA && rtx[0].board[row, col] == 'X') or (!rtxo.turnA && rtx[0].board[pos_x, pos_y] == 'O')) &&
+                # checking the turn
+                rtx[0].turnA == !rtxo.turnA &&
+                ((rtxo.turnA && versigA(rtx, sig)) or (!rtxo.turnA && versigB(rtx, sig))) &&
+                (
+                    (
+                        # Allow player A to withdraw
+                        rtxo.turnA && isWinner(rtx[0].board, 'Symbol X') &&
+                        rtx[0].val = 0:T &&
+                        rtx[1].script == versigA(rtx, sig) &&
+                        rtx[1].val = 2:T
+                    )
+                    or
+                    (
+                        # Allow player B to withdraw
+                        !rtxo.turnA && isWinner(rtx[0].board, 'Symbol O') &&
+                        rtx[0].val = 0:T &&
+                        rtx[1].script == versigB(rtx, sig) &&
+                        rtx[1].val = 2:T
+                    )
+                    or
+                    (
+                        # The game is not finished yet
+                        rtx[0].val = 2:T
+                    )
+                )
           ) &&
           |rtx.inputs|==1
 ```
