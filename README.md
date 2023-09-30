@@ -64,7 +64,7 @@ In a stateful smart contracts, the contract itself maintains the state of the ga
 
 Stateless contracts are contracts that do not maintain their own state. Instead, it relies on external accounts to provide data and instructions for its execution.
 
-In stateless contracts, where contracts do not maintain their own state , ensuring the security of the system becomes paramount. One security consideration can be the **access controll**: it is crucial to implement robust access control mechanisms to ensure that only authorized entities can modify the data of an account. This often involves verifying the signatures of transactions and ensuring that the sender has the necessary permissions to perform specific actions. Access control prevents unauthorized modifications to the contract's data.
+In stateless contracts, ensuring the security of the system becomes paramount. One security consideration can be the **access controll**: it is crucial to implement robust access control mechanisms to ensure that only authorized entities can modify the data of an account. This often involves verifying the signatures of transactions and ensuring that the sender has the necessary permissions to perform specific actions. Access control prevents unauthorized modifications to the contract's data.
 
 <img src="images/example_stateless.png"/>
 
