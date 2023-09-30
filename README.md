@@ -402,8 +402,6 @@ The logic is divided into two parts: the first part is executed if the game has 
 - **Timeout not reached**: If the game is still ongoing, the script allows the player to make a move if it's their turn. If the move is valid, the script updates the board and checks if the player has won. If the player has won, the script allows the player to withdraw their deposit. If the player has not won, the script allows the other player to make a move by constraining the next transaction script's variables: `turnA` and `board`.
 
 ```yaml
-
-```yaml
 # TicTacToe
 inputs:
   txA ← sigA(tx1TicTacToe) # txA holds 1:T
