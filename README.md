@@ -356,14 +356,19 @@ You can see the provided pseudocode implementation by opening the collapsed sect
 ```yaml
 tx1TicTacToe
 inputs:
-  txA ← sigA(tx1TicTacToe)		(txA holds 1:T)
-  txB ← sigB(tx1TicTacToe)		(txB holds 1:T)
+  txA ← sigA(tx1TicTacToe)		# txA holds 1:T
+  txB ← sigB(tx1TicTacToe)		# txB holds 1:T
 outputs:
   2:T → fun sig, row, col [board=[['Empty', 'Empty', 'Empty']], turnA=true]:
+          
           (
-            (after N : rtxo.turnA && rtx[0].script: versigB(rtx, sig) && rtx[0].val = 2:T)
-            or
-            (after N : !rtxo.turnA && rtx[0].script: versigA(rtx, sig) && rtx[0].val = 2:T)
+            # timeout reached
+            after N :
+                # allow player B to withdraw all the deposits
+                rtxo.turnA && rtx[0].script: versigB(rtx, sig) && rtx[0].val = 2:T
+                or
+                # allow player A to withdraw all the deposits
+                !rtxo.turnA && rtx[0].script: versigA(rtx, sig) && rtx[0].val = 2:T
           )
           or
           (
