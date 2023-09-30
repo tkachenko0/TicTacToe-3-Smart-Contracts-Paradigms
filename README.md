@@ -372,16 +372,20 @@ outputs:
           )
           or
           (
+            # timeout not reached
             before N &&
             rtx[0].script == rtxo[0].script &&
+            # if valid coordinates and right board configuration
             row >= 0 && row < 3 && col >= 0 && col < 3 &&
-            ((rtxo.turnA && versigA(rtx, sig)) or (!rtxo.turnA && versigB(rtx, sig))) &&
-            rtx[0].turnA == !rtxo.turnA &&
-            rtxo.board[row, col] == 'Empty' &&
+            txo.board[row, col] == 'Empty' &&
             ((rtxo.turnA && rtx[0].board[row, col] == 'X') or (!rtxo.turnA && rtx[0].board[pos_x, pos_y] == 'O')) &&
-            rtx[0].board[otherx, othery] == rtxo.board[otherx, othery] for all (otherx, othery) != (row, col) &&
+            rtx[0].board[otherx, othery] == rtxo.board[otherx, othery] ∀(otherx,othery) != (row, col) &&
+            # checking the turn
+            rtx[0].turnA == !rtxo.turnA &&
+            ((rtxo.turnA && versigA(rtx, sig)) or (!rtxo.turnA && versigB(rtx, sig))) &&
             (
               (
+                # Allow player A to withdraw
                 rtxo.turnA &&
                 isWinner(rtx[0].board, 'Symbol X') &&
                 rtx[0].val = 0:T &&
@@ -390,6 +394,7 @@ outputs:
               )
               or
               (
+                # Allow player B to withdraw
                 !rtxo.turnA &&
                 isWinner(rtx[0].board, 'Symbol O') &&
                 rtx[0].val = 0:T &&
@@ -397,7 +402,10 @@ outputs:
                 rtx[1].val = 2:T
               )
               or
-              rtx[0].val = 2:T
+              (
+                # The game is not finished yet
+                rtx[0].val = 2:T
+              )
             )
           ) &&
           |rtx.inputs|==1
