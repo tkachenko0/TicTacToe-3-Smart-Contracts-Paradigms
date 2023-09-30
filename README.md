@@ -246,7 +246,7 @@ You can see the provided pseudocode implementation by opening the collapsed sect
 <summary>Pseudocode implementation</summary>
 
 > The provided code snippets are pseudocode representations. 
-You can find the actual in [Account Based (Stateless) Implementation in Anchor for Solana](Stateless)
+You can find the actual implementation in [Account Based (Stateless) Implementation in Anchor for Solana](Stateless)
 with:
 - [Anchor on-chain code](Stateless/tic-tac-toe-anchor/programs/tic-tac-toe-anchor/src/lib.rs)
 - [TypeScript client code](Stateless/tic-tac-toe-anchor/tests/test_tic_tac_toe.ts)
