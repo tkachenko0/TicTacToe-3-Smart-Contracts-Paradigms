@@ -88,15 +88,15 @@ If you want to transfer an UTXO to Alice, you can specify that the witness shoul
 ```yaml
 # tx1 (An Actor)
 inputs:
-  txA ← ...	# txA holds 1:T
-  # other inputs
+    txA ← ... # txA holds 1:T
+    # other inputs
 outputs:
     1:T → fun sigA: versig(Alice, rtx, sig)
     # other outputs
 
 # tx2 (Alice)
 inputs:
-  tx1[0] ← sigA(tx2)
+    tx1[0] ← sigA(tx2)
 outputs:
     1:T → ...
 ```
@@ -360,52 +360,52 @@ inputs:
   txB ← sigB(tx1TicTacToe) # txB holds 1:T
 outputs:
   2:T → fun sig, row, col [board=[['Empty'; 3]; 3], turnA=true]:
-          (
-            # timeout reached
-            after N:
-                # allow player B to withdraw all the deposits
-                rtxo.turnA && rtx[0].script: versig(Bob, rtx, sig) && rtx[0].val = 2:T
-                or
-                # allow player A to withdraw all the deposits
-                !rtxo.turnA && rtx[0].script: versig(Alice, rtx, sig) && rtx[0].val = 2:T
-          )
-          or
-          (
-            # timeout not reached
-            before N:
-                rtx[0].script == rtxo[0].script &&
-                # if valid coordinates and right board configuration
-                txo.board[row, col] == 'Empty' &&
-                row >= 0 && row < 3 && col >= 0 && col < 3 &&
-                rtx[0].board[otherx, othery] == rtxo.board[otherx, othery] ∀(otherx,othery) != (row, col) &&
-                ((rtxo.turnA && rtx[0].board[row, col] == 'X') or (!rtxo.turnA && rtx[0].board[pos_x, pos_y] == 'O')) &&
-                # checking the turn
-                rtx[0].turnA == !rtxo.turnA &&
-                ((rtxo.turnA && versig(Alice, rtx, sig)) or (!rtxo.turnA && versig(Bob, rtx, sig))) &&
-                (
-                    (
-                        # Allow player A to withdraw
-                        rtxo.turnA && isWinner(rtx[0].board, 'Symbol X') &&
-                        rtx[0].val = 0:T &&
-                        rtx[1].script == versig(Alice, rtx, sig) &&
-                        rtx[1].val = 2:T
-                    )
-                    or
-                    (
-                        # Allow player B to withdraw
-                        !rtxo.turnA && isWinner(rtx[0].board, 'Symbol O') &&
-                        rtx[0].val = 0:T &&
-                        rtx[1].script == versig(Bob, rtx, sig) &&
-                        rtx[1].val = 2:T
-                    )
-                    or
-                    (
-                        # The game is not finished yet
-                        rtx[0].val = 2:T
-                    )
-                )
-          ) &&
-          |rtx.inputs|==1
+    (
+    # timeout reached
+    after N:
+        # allow player B to withdraw all the deposits
+        rtxo.turnA && rtx[0].script: versig(Bob, rtx, sig) && rtx[0].val = 2:T
+        or
+        # allow player A to withdraw all the deposits
+        !rtxo.turnA && rtx[0].script: versig(Alice, rtx, sig) && rtx[0].val = 2:T
+    )
+    or
+    (
+    # timeout not reached
+    before N:
+        rtx[0].script == rtxo[0].script &&
+        # if valid coordinates and right board configuration
+        txo.board[row, col] == 'Empty' &&
+        row >= 0 && row < 3 && col >= 0 && col < 3 &&
+        rtx[0].board[otherx, othery] == rtxo.board[otherx, othery] ∀(otherx,othery) != (row, col) &&
+        ((rtxo.turnA && rtx[0].board[row, col] == 'X') or (!rtxo.turnA && rtx[0].board[pos_x, pos_y] == 'O')) &&
+        # checking the turn
+        rtx[0].turnA == !rtxo.turnA &&
+        ((rtxo.turnA && versig(Alice, rtx, sig)) or (!rtxo.turnA && versig(Bob, rtx, sig))) &&
+        (
+            (
+                # Allow player A to withdraw
+                rtxo.turnA && isWinner(rtx[0].board, 'Symbol X') &&
+                rtx[0].val = 0:T &&
+                rtx[1].script == versig(Alice, rtx, sig) &&
+                rtx[1].val = 2:T
+            )
+            or
+            (
+                # Allow player B to withdraw
+                !rtxo.turnA && isWinner(rtx[0].board, 'Symbol O') &&
+                rtx[0].val = 0:T &&
+                rtx[1].script == versig(Bob, rtx, sig) &&
+                rtx[1].val = 2:T
+            )
+            or
+            (
+                # The game is not finished yet
+                rtx[0].val = 2:T
+            )
+        )
+    ) &&
+    |rtx.inputs|==1
 ```
 
 </details>
