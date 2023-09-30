@@ -155,6 +155,8 @@ You can see the provided pseudocode implementation by opening the collapsed sect
 
 > The provided code snippets are pseudocode representations. You can find the actual in [Account Based (Stateful) Implementation in Solidity](Statefull)
 
+When deployed, the contract requires certain parameters to start a game, including the addresses of two players (`playerA` and `playerB`), the number of blocks until the game times out (`gameTimeoutBlock`), and the required deposit in to participate (`requiredDeposit`). The contract also maintains the current player (`currentPlayer`), the state of the board (`board`), and whether each player has deposited (`playerAhasDeposited` and `playerBhasDeposited`).
+
 ```solidity
 contract TicTacToe {
     address public playerA;
@@ -186,6 +188,9 @@ contract TicTacToe {
 
     ...
 ```
+
+
+Then we need a function to allow players to make a move. This function requires the player to be the current player, the cell to be empty, and the game to not have timed out. If these conditions are met, the function updates the board, checks if the player has won, and switches the current player.
 
 ```solidity
     function makeMove(uint8 row, uint8 col) external payable  {
@@ -221,6 +226,8 @@ contract TicTacToe {
         // You can find the implementation of this function in the full code
     }
 ```
+
+Finally, we need a function to allow players to withdraw their funds if the game times out. This function requires the game to have timed out and the player to not be the current player. If these conditions are met, the function transfers the funds to the player.
 
 ```solidity
     function timeout() external {
