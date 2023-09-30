@@ -91,14 +91,14 @@ inputs:
   txA ← ...	# txA holds 1:T
   # other inputs
 outputs:
-    1:T → fun sigA: versigA(rtx, sig)
+    1:T → fun sigA: versig(Alice, rtx, sig)
     # other outputs
 
 # tx2 (Alice)
 inputs:
   tx1[0] ← sigA(tx2)
 outputs:
-    1:T → fun sigB: versigB(rtx, sig)
+    1:T → ...
 ```
 
 There are also other types of constrains, here some examples:
@@ -354,7 +354,7 @@ You can see the provided pseudocode implementation by opening the collapsed sect
 <summary>Pseudocode implementation</summary>
 
 ```yaml
-tx1TicTacToe
+# TicTacToe
 inputs:
   txA ← sigA(tx1TicTacToe) # txA holds 1:T
   txB ← sigB(tx1TicTacToe) # txB holds 1:T
@@ -364,10 +364,10 @@ outputs:
             # timeout reached
             after N:
                 # allow player B to withdraw all the deposits
-                rtxo.turnA && rtx[0].script: versigB(rtx, sig) && rtx[0].val = 2:T
+                rtxo.turnA && rtx[0].script: versig(Bob, rtx, sig) && rtx[0].val = 2:T
                 or
                 # allow player A to withdraw all the deposits
-                !rtxo.turnA && rtx[0].script: versigA(rtx, sig) && rtx[0].val = 2:T
+                !rtxo.turnA && rtx[0].script: versig(Alice, rtx, sig) && rtx[0].val = 2:T
           )
           or
           (
@@ -381,13 +381,13 @@ outputs:
                 ((rtxo.turnA && rtx[0].board[row, col] == 'X') or (!rtxo.turnA && rtx[0].board[pos_x, pos_y] == 'O')) &&
                 # checking the turn
                 rtx[0].turnA == !rtxo.turnA &&
-                ((rtxo.turnA && versigA(rtx, sig)) or (!rtxo.turnA && versigB(rtx, sig))) &&
+                ((rtxo.turnA && versig(Alice, rtx, sig)) or (!rtxo.turnA && versig(Bob, rtx, sig))) &&
                 (
                     (
                         # Allow player A to withdraw
                         rtxo.turnA && isWinner(rtx[0].board, 'Symbol X') &&
                         rtx[0].val = 0:T &&
-                        rtx[1].script == versigA(rtx, sig) &&
+                        rtx[1].script == versig(Alice, rtx, sig) &&
                         rtx[1].val = 2:T
                     )
                     or
@@ -395,7 +395,7 @@ outputs:
                         # Allow player B to withdraw
                         !rtxo.turnA && isWinner(rtx[0].board, 'Symbol O') &&
                         rtx[0].val = 0:T &&
-                        rtx[1].script == versigB(rtx, sig) &&
+                        rtx[1].script == versig(Bob, rtx, sig) &&
                         rtx[1].val = 2:T
                     )
                     or
