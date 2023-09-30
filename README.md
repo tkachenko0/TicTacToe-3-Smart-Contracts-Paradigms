@@ -88,7 +88,7 @@ If you want to transfer an UTXO to Alice, you can specify that the witness shoul
 ```yaml
 # tx1 (An Actor)
 inputs:
-  txA ← ...		(txA holds 1:T)
+  txA ← ...		# txA holds 1:T
   # other inputs
 outputs:
     1:T → fun sigA: versigA(rtx, sig)
