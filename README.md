@@ -361,25 +361,25 @@ inputs:
 outputs:
   2:T → fun sig, row, col [board=[['Empty'; 3]; 3], turnA=true]:
     (
-    # timeout reached
+    # Timeout reached
     after N:
-        # allow player B to withdraw all the deposits
+        # Allow player B to withdraw all the deposits
         rtxo.turnA && rtx[0].script: versig(Bob, rtx, sig) && rtx[0].val = 2:T
         or
-        # allow player A to withdraw all the deposits
+        # Allow player A to withdraw all the deposits
         !rtxo.turnA && rtx[0].script: versig(Alice, rtx, sig) && rtx[0].val = 2:T
     )
     or
     (
-    # timeout not reached
+    # Timeout not reached
     before N:
         rtx[0].script == rtxo[0].script &&
-        # if valid coordinates and right board configuration
+        # If valid coordinates and right board configuration
         txo.board[row, col] == 'Empty' &&
         row >= 0 && row < 3 && col >= 0 && col < 3 &&
         rtx[0].board[otherx, othery] == rtxo.board[otherx, othery] ∀(otherx,othery) != (row, col) &&
         ((rtxo.turnA && rtx[0].board[row, col] == 'X') or (!rtxo.turnA && rtx[0].board[pos_x, pos_y] == 'O')) &&
-        # checking the turn
+        # Checking the turn
         rtx[0].turnA == !rtxo.turnA &&
         ((rtxo.turnA && versig(Alice, rtx, sig)) or (!rtxo.turnA && versig(Bob, rtx, sig))) &&
         (
