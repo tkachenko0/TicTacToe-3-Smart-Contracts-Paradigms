@@ -106,7 +106,7 @@ inputs: ...
 outputs:
     ... → fun x: rtx[0].script == ctxo[0].script
 ```
-- enforcing that the value of a variable `rtx` should be the same of the `rtxo`:
+- enforcing that the value of `myVar` of the `rtx` should be the same of the `rtxo`:
 ```yaml
 # tx
 inputs: ...
