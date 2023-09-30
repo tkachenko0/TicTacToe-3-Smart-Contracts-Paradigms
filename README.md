@@ -8,6 +8,7 @@
       - [Stateless Contracts](#stateless-contracts)
     + [UTXO Based Paradigm](#utxo-based-paradigm)
       - [Witness Constrains](#witness-constrains)
+    * [Parallelizability](#parallelizability)
   * [Tic Tac Toe in the Stateful Paradigm 🧩](#tic-tac-toe-in-the-stateful-paradigm---)
   * [Tic Tac Toe in the Stateless Paradigm 🧩](#tic-tac-toe-in-the-stateless-paradigm---)
   * [Tic Tac Toe in the UTXO Paradigm 🧩](#tic-tac-toe-in-the-utxo-paradigm---)
