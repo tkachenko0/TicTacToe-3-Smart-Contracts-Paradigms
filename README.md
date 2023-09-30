@@ -96,7 +96,7 @@ outputs:
 
 # tx2 (Alice)
 inputs:
-  tx1 ← sigA(tx2)
+  tx1[0] ← sigA(tx2)
 outputs:
     1:T → fun sigB: versigB(rtx, sig)
 ```
