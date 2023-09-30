@@ -7,7 +7,7 @@
       - [Stateful Contracts](#stateful-contracts)
       - [Stateless Contracts](#stateless-contracts)
     + [UTXO Based Paradigm](#utxo-based-paradigm)
-    + [Witness Constrains](#witness-constrains)
+      - [Witness Constrains](#witness-constrains)
   * [Tic Tac Toe in the Stateful Paradigm 🧩](#tic-tac-toe-in-the-stateful-paradigm---)
   * [Tic Tac Toe in the Stateless Paradigm 🧩](#tic-tac-toe-in-the-stateless-paradigm---)
   * [Tic Tac Toe in the UTXO Paradigm 🧩](#tic-tac-toe-in-the-utxo-paradigm---)
@@ -81,20 +81,41 @@ In the UTXO-based paradigm, the "script" and "witness" are fundamental concepts 
 
 Understanding these smart contract paradigms is crucial when developing blockchain applications, as they influence how contracts handle state, transitions, and security. In the following sections, we'll explore how each of these paradigms has been applied to our Tic Tac Toe game, providing real-world examples of their capabilities and limitations.
 
-### Witness Constrains
+#### Witness Constrains
 
 If you want to transfer an UTXO to Alice, you can specify that the witness should be the signature of Alice.
 
 ```yaml
+# tx1 (An Actor)
+inputs:
+  txA ← ...		(txA holds 1:T)
+  # other inputs
+outputs:
+    1:T → fun sigA: versigA(rtx, sig)
+    # other outputs
+
+# tx2 (Alice)
+inputs:
+  tx1 ← sigA(tx2)
+outputs:
+    1:T → fun sigB: versigB(rtx, sig)
 ```
 
-There are also other types of constrains like:
+There are also other types of constrains, here some examples:
 
 - enforcing that the script of the `rtx` should be the same as the script of the `rtxo`:
 ```yaml
+# tx
+inputs: ...
+outputs:
+    ... → fun x: rtx[0].script == ctxo[0].script
 ```
 - enforcing that the value of a variable `rtx` should be the same of the `rtxo`:
 ```yaml
+# tx
+inputs: ...
+outputs:
+    ... → fun x [myVar=3]: rtx[0].myVar == ctxo[0].myVar
 ```
 
 ## Tic Tac Toe in the Stateful Paradigm 🧩
