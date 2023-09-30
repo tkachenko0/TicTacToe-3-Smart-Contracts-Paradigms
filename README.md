@@ -70,7 +70,7 @@ Stateless contracts are contracts that do not maintain their own state. Instead,
 
 ### UTXO Based Paradigm
 
-The UTXO (Unspent Transaction Output) based paradigm is famously associated with Bitcoin and some other cryptocurrencies. UTXOs are unspent transaction outputs that are created when a transaction is executed and they are consumed when a new transaction is executed. In this paradigm each transaction consumes one or more UTXOs and creates one or more new UTXOs and each UTXO can only be consumed once. UTXO-based systems are very simple. However, they can be less flexible for complex operations.
+The UTXO (Unspent Transaction Output) paradigm is famously associated with [Bitcoin](https://bitcoin.org/en/) and some other cryptocurrencies. UTXOs are unspent transaction outputs that are created when a transaction is executed and they are consumed when a new transaction is executed. In this paradigm each transaction consumes one or more UTXOs and creates one or more new UTXOs and each UTXO can only be consumed once. UTXO-based systems are very simple. However, they can be less flexible for complex operations.
 
 In the UTXO-based paradigm, the "script" and "witness" are fundamental concepts used to validate transactions. 
 
