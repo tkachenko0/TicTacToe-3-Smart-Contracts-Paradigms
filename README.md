@@ -1,5 +1,11 @@
 # TicTacToe in 3 Smart Contracts Paradigms 🧩
 
+⁣⭕❕⭕❕❌ <br>
+➖➕➖➕➖ <br>
+⭕❕⁣❌❕⭕ <br>
+➖➕➖➕➖ <br>
+❌❕❌❕⭕ <br>
+
 - [TicTacToe in 3 Smart Contracts Paradigms 🧩](#tictactoe-in-3-smart-contracts-paradigms---)
   * [Introduction 👋](#introduction---)
   * [Smart Contract Paradigms 📗](#smart-contract-paradigms---)
@@ -24,12 +30,6 @@ Hello, in this repository, we explore the three fundamental smart contract parad
     - Stateful
 
 The aim of this project is to provide a comprehensive understanding of these smart contract paradigms and their real-world implications. By scaffolding a familiar game (Tic Tac Toe) in each paradigm, we offer practical insights into the differences, challenges, and advantages of each approach.
-
-⁣⭕❕⭕❕❌ <br>
-➖➕➖➕➖ <br>
-⭕❕⁣❌❕⭕ <br>
-➖➕➖➕➖ <br>
-❌❕❌❕⭕ <br>
 
 So we will provide an overview of the Tic Tac Toe game implemented in those three different smart contract paradigms. Each implementation serves as a practical demonstration of how these paradigms handle state, transitions, and logic execution.
 
