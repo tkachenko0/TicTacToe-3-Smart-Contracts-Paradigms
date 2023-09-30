@@ -56,15 +56,15 @@ Within the Account-Based paradigm, we can further categorize smart contracts int
 
 Stateful contracts maintain and manage their own state. They can store data, update it based on transactions, and execute complex logic. 
 
-❗ In a stateful smart contracts, the contract itself maintains the state of the game and it doesn't rely on external data. Stateful contracts are suitable for applications that require persistent storage and complex business logic, such as games, decentralized finance (DeFi) platforms, and more.
+In a stateful smart contracts, the contract itself maintains the state of the game and it doesn't rely on external data. Stateful contracts are suitable for applications that require persistent storage and complex business logic, such as games, decentralized finance (DeFi) platforms, and more.
 
 <img src="images/example_stateful.png"/>
 
 #### Stateless Contracts
 
-Stateless contracts are contracts that do not maintain their own state. Instead, it relies on external accounts to provide data and instructions for its execution.
+Stateless contracts are contracts that do not maintain their own state. Instead, they relie on external accounts to provide data and instructions for their execution.
 
-In stateless contracts, ensuring the security of the system becomes paramount. One security consideration can be the **access controll**: it is crucial to implement robust access control mechanisms to ensure that only authorized entities can modify the data of an account. This often involves verifying the signatures of transactions and ensuring that the sender has the necessary permissions to perform specific actions. Access control prevents unauthorized modifications to the contract's data.
+❗ In stateless contracts, ensuring the security of the system becomes paramount. One security consideration can be the **access controll**: it is crucial to implement robust access control mechanisms to ensure that only authorized entities can modify the data of an account. This often involves verifying the signatures of transactions and ensuring that the sender has the necessary permissions to perform specific actions. Access control prevents unauthorized modifications to the contract's data.
 
 <img src="images/example_stateless.png"/>
 
