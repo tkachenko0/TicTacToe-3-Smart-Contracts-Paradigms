@@ -390,7 +390,7 @@ outputs:
                 rtx[1].script == versig(Alice, rtx, sig) &&
                 rtx[1].val = 2:T
             )
-            or
+            or:
             (
                 # Allow player B to withdraw
                 !rtxo.turnA && isWinner(rtx[0].board, 'Symbol O') &&
