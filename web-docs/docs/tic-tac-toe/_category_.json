@@ -1,0 +1,8 @@
+{
+  "label": "Tic Tac Toe",
+  "position": 3,
+  "link": {
+    "type": "generated-index",
+    "description": "Scaffolding a familiar game (Tic Tac Toe) in each paradigm."
+  }
+}
