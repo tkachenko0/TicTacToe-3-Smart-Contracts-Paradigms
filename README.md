@@ -136,7 +136,7 @@ const instruction = new TransactionInstruction({
 });
 ```
 
-- **UTXO-Based Contracts**: also UTXO-based contracts can be highly parallelizable. In this paradigm, each transaction consumes specific UTXOs and creates new ones. These UTXOs are typically disjoint and do not overlap in terms of state. As a result, multiple transactions can be processed in parallel
+- **UTXO-Based Contracts**: also UTXO-based contracts can be highly parallelizable. In this paradigm, each transaction consumes specific UTXOs and creates new ones. These UTXOs are typically disjoint and do not overlap in terms of state. As a result, multiple transactions can be processed in parallel.
 
 ## Tic Tac Toe in the Stateful Paradigm 🧩
 
@@ -238,7 +238,7 @@ Finally, we need a function to allow players to withdraw their funds if the game
 
 ## Tic Tac Toe in the Stateless Paradigm 🧩
 
-The Account-Based paradigm, in its stateless form, allows for executing smart contract functions without maintaining any internal state.
+The Account-Based paradigm, in its stateless form, allows executing smart contract functions without maintaining any internal state.
 
 You can see the provided pseudocode implementation by opening the collapsed section below.
 
@@ -456,7 +456,7 @@ outputs:
 
 ## Contributing 🙌
 
-We welcome contributions to this project! If you're interested, here is an idea: note that while we have implemented Tic Tac Toe game for [Ethereum](https://ethereum.org/en/) using [Solidity](https://soliditylang.org) (Statefull) and for [Solana](https://solana.com) using [Rust](https://www.rust-lang.org) with the [Anchor framework](https://www.anchor-lang.com) (Stateless), we currently only have a scaffolded pseudocode for the UTXO-based paradigm.
+We welcome contributions to this project! If you're interested, here is an idea: note that while we have implemented Tic Tac Toe game for [Ethereum](https://ethereum.org/en/) using [Solidity](https://soliditylang.org) (Statefull) and for [Solana](https://solana.com) using [Rust](https://www.rust-lang.org) with the [Anchor framework](https://www.anchor-lang.com) (Stateless), we currently only have a scaffolded pseudocode for the UTXO-based paradigm. If you're interested in contributing, you can implement the UTXO-based Tic Tac Toe game in a real-world blockchain platform, such as [Bitcoin](https://bitcoin.org/en/), [Cardano](https://cardano.org), etc..
 
 ## Acknowledgments 🙏
 
