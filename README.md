@@ -122,7 +122,7 @@ Parallelizability is the ability to execute multiple transactions concurrently. 
 
 - **Stateless Contracts**: Stateless contracts, on the other hand, are highly parallelizable. Since they do not maintain their own state and instead rely on external accounts to provide data, they often operate on distinct and isolated parts of the state. 
 
-For example, [Solana](https://solana.com), for each passed account in an instruction, we need to 
+For example, in [Solana](https://solana.com), for each passed account in an instruction, we need to 
 specify if the account is read-only or writable:
 
 ```typescript
