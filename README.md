@@ -392,7 +392,7 @@ The transaction condition script captures the logic for determining the outcome 
 
 The transaction has 2 inputs, one for each player. The inputs are the previous transactions that the players have made to the game. 
 
-The logic is divided into two parts: the first part is executed if the game has timed out, and the second part is executed if the game is still ongoing.
+The logic is divided into two parts: 
 - **Timeout reached**: If the game has timed out, the script allows the player who has not timed out to withdraw their deposit. 
 - **Timeout not reached**: If the game is still ongoing, the script allows the player to make a move if it's their turn. If the move is valid, the script updates the board and checks if the player has won. If the player has won, the script allows the player to withdraw their deposit. If the player has not won, the script allows the other player to make a move by constraining the next transaction script's variables: `turnA` and `board`.
 
