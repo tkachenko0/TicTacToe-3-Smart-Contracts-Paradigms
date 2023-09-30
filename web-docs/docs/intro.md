@@ -20,4 +20,6 @@ The aim of this project is to provide a comprehensive understanding of these sma
 
 So we will provide an overview of the Tic Tac Toe game implemented in those three different smart contract paradigms. Each implementation serves as a practical demonstration of how these paradigms handle state, transitions, and logic execution.
 
-> Don't worry, we won't bore you with a tutorial on how to play Tic Tac Toe – we trust that you've all mastered it during those 'productive' school days when lessons just couldn't compete with this classic game. 😉
+:::info
+Don't worry, we won't bore you with a tutorial on how to play Tic Tac Toe – we trust that you've all mastered it during those 'productive' school days when lessons just couldn't compete with this classic game. 😉
+:::
