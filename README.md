@@ -133,8 +133,8 @@ specify if the account is read-only or writable:
 ```typescript
 const instruction = new TransactionInstruction({
     keys: [
-        {pubkey: gameAccount.publicKey, isSigner: true, isWritable: true},
-        {pubkey: gameStateAccount.publicKey, isSigner: false, isWritable: true},
+        {pubkey: gameAccount.publicKey, isSigner: true, isWritable: true},         // writable
+        {pubkey: gameStateAccount.publicKey, isSigner: false, isWritable: false},  // read-only
     ],
     programId: programId,
     data: // ...,
@@ -188,7 +188,6 @@ contract TicTacToe {
 
     ...
 ```
-
 
 Then we need a function to allow players to make a move. This function requires the player to be the current player, the cell to be empty, and the game to not have timed out. If these conditions are met, the function updates the board, checks if the player has won, and switches the current player.
 
@@ -258,6 +257,9 @@ with:
 - [Anchor on-chain code](Stateless/tic-tac-toe-anchor/programs/tic-tac-toe-anchor/src/lib.rs)
 - [TypeScript client code](Stateless/tic-tac-toe-anchor/tests/test_tic_tac_toe.ts)
 
+
+In the initial steps, we must set up the essential data structures required to establish the initial state of a Tic Tac Toe game on the Solana blockchain. The `GameData` structure is responsible for storing game-specific details, while the `InitializeCtx` structure serves as the context for initiating the game. The `initialize` function acts as the starting point for configuring the game state by utilizing the provided context and parameters.
+
 ```rust
 // Enum representing the game board cell
 pub enum Symbol {
@@ -299,6 +301,10 @@ pub fn initialize(ctx: InitializeCtx, required_amount: u64, delay_slots: u64)  {
     game_data.required_amount = required_amount;
 }
 ```
+
+The `make_move` function is responsible for updating the game state by allowing players to make a move. The function requires the `player` to be the current player, the cell to be empty, and the game to not have timed out. If these conditions are met, the function updates the board, checks if the player has won, and switches the current player.
+
+It's also important to nota that it is crucial to check is `game_data` account is owned by the program and also if the provided `player` has signed the transaction. Othervise, anyone could call the `make_move` function and modify the game state acting like the provided `player`. The [Anchor framework](https://www.anchor-lang.com) makes this check automatically.
 
 ```rust
 // Context of accounts passed to the make_move function
@@ -351,6 +357,8 @@ fn check_winner(board: [[Symbol; 3]; 3]) -> bool {
 }
 ```
 
+Finally, we need a function to allow players to withdraw their funds if the game times out. This function requires the game to have timed out and the player to not be the current player. If these conditions are met, the function transfers the funds to the `player`.
+
 ```rust
 // Context of accounts passed to the timeout function
 pub struct TimeoutCtx {
@@ -384,6 +392,16 @@ You can see the provided pseudocode implementation by opening the collapsed sect
 <details>
 
 <summary>Pseudocode implementation</summary>
+
+The transaction condition script captures the logic for determining the outcome of a Tic Tac Toe game in the UTXO paradigm, considering factors such as player turns, timeouts, valid moves, and winning conditions. It allows players to withdraw deposits based on the game's outcome or continue the game if it's still ongoing.
+
+The transaction has 2 inputs, one for each player. The inputs are the previous transactions that the players have made to the game. 
+
+The logic is divided into two parts: the first part is executed if the game has timed out, and the second part is executed if the game is still ongoing.
+- **Timeout reached**: If the game has timed out, the script allows the player who has not timed out to withdraw their deposit. 
+- **Timeout not reached**: If the game is still ongoing, the script allows the player to make a move if it's their turn. If the move is valid, the script updates the board and checks if the player has won. If the player has won, the script allows the player to withdraw their deposit. If the player has not won, the script allows the other player to make a move by constraining the next transaction script's variables: `turnA` and `board`.
+
+```yaml
 
 ```yaml
 # TicTacToe
