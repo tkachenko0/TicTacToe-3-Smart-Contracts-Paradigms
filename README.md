@@ -41,25 +41,46 @@ Within the Account-Based paradigm, we can further categorize smart contracts int
 Stateful contracts are contracts that maintain and manage their own state. They can store data, update it based on transactions, and execute complex logic.
 Stateful contracts are suitable for applications that require persistent storage and complex business logic, such as games, decentralized finance (DeFi) platforms, and more.
 
+Think of a stateful contract like a bank account. In a bank account, you have a balance, and you can perform various transactions like depositing money, withdrawing money, or checking your balance. The bank account itself maintains the state, which is your balance. When you deposit money, the balance increases, and when you withdraw money, the balance decreases. The bank account doesn't rely on external systems to track your balance; it manages it internally.
+
+Similarly, in a stateful smart contracts, the contract itself maintains the state of the game and it doesn't rely on external data.
+
 #### Stateless Contracts
 
-Stateless contracts are contracts that do not maintain their own state. They execute deterministic functions based solely on their input parameters and the blockchain's current state that is stored in other accounts and passed to contracts as input.
+Stateless contracts are contracts that do not maintain their own state. Instead, it relies on external accounts to provide data and instructions for its execution.
+
+In stateless contracts, where contracts do not maintain their own state , ensuring the security of the system becomes paramount. One security consideration can be the **accesss controll**: it is crucial to implement robust access control mechanisms to ensure that only authorized entities can modify the data of an account. This often involves verifying the signatures of transactions and ensuring that the sender has the necessary permissions to perform specific actions. Access control prevents unauthorized modifications to the contract's data.
 
 ### UTXO Based Paradigm
 
-The UTXO (Unspent Transaction Output) based paradigm is famously associated with Bitcoin and some other cryptocurrencies.
+The UTXO (Unspent Transaction Output) based paradigm is famously associated with Bitcoin and some other cryptocurrencies. UTXOs are unspent transaction outputs that are created when a transaction is executed and they are consumed when a new transaction is executed. In this paradigm each transaction consumes one or more UTXOs and creates one or more new UTXOs and each UTXO can only be consumed once. UTXO-based systems are very simple. However, they can be less flexible for complex operations.
 
-UTXOs are unspent transaction outputs that are created when a transaction is executed and they are consumed when a new transaction is executed.
+In the UTXO-based paradigm, the "script" and "witness" are fundamental concepts used to validate transactions. 
 
-In this paradigm each transaction consumes one or more UTXOs and creates one or more new UTXOs and each UTXO can only be consumed once.
-
-UTXO-based systems are very simple. However, they can be less flexible for complex operations.
+- **Script**: a piece of code associated with a UTXO. It defines the conditions that must be met for the UTXO to be spent. In other words, it specifies the rules for how the UTXO can be used in a transaction. 
+- **Witness**: provided by the sender of a transaction to satisfy the conditions specified in the script of the UTXO being spent. The witness serves as evidence that the sender has the right to spend the UTXO. It typically includes digital signatures and other data required by the script.
 
 Understanding these smart contract paradigms is crucial when developing blockchain applications, as they influence how contracts handle state, transitions, and security. In the following sections, we'll explore how each of these paradigms has been applied to our Tic Tac Toe game, providing real-world examples of their capabilities and limitations.
 
+### Witness Constrains
+
+If you want to transfer an UTXO to Alice, you can specify that the witness should be the signature of Alice.
+
+```yaml
+```
+
+There are also other types of constrains like:
+
+- enforcing that the script of the `rtx` should be the same as the script of the `rtxo`:
+```yaml
+```
+- enforcing that the value of a variable `rtx` should be the same of the `rtxo`:
+```yaml
+```
+
 ## Tic Tac Toe in the Stateful Paradigm 🧩
 
-Account-Based smart contracts, when stateful, have the capability to maintain and modify their own internal state.
+Account-Based smart contracts, when stateful, have the capability to maintain and modify their own internal state. The contract itself maintains the state of the game. It doesn't rely on external systems to keep track of the game board or whose turn it is. Instead, it updates its internal state based on the actions of the players tracking the game board, whose turn it is, and whether someone has won.
 
 You can see the provided pseudocode implementation by opening the collapsed section below.
 
