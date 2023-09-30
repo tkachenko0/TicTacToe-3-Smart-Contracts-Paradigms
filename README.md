@@ -241,7 +241,7 @@ pub struct GameData {
     pub turn_a: bool,
     pub player_a_has_deposited: bool,
     pub player_b_has_deposited: bool,
-    pub board: [[Symbol; 3]; 3],
+    pub board: [[Symbol; 3]; 3], // 3x3 board
     pub end_slot: u64,
     pub required_amount: u64,
 }
@@ -359,7 +359,7 @@ inputs:
   txA ← sigA(tx1TicTacToe)		# txA holds 1:T
   txB ← sigB(tx1TicTacToe)		# txB holds 1:T
 outputs:
-  2:T → fun sig, row, col [board=[['Empty', 'Empty', 'Empty']], turnA=true]:
+  2:T → fun sig, row, col [board=[['Empty'; 3]; 3], turnA=true]:
           (
             # timeout reached
             after N:
