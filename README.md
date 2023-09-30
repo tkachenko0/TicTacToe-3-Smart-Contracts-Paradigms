@@ -68,6 +68,8 @@ Stateless contracts are contracts that do not maintain their own state. Instead,
 
 In stateless contracts, where contracts do not maintain their own state , ensuring the security of the system becomes paramount. One security consideration can be the **accesss controll**: it is crucial to implement robust access control mechanisms to ensure that only authorized entities can modify the data of an account. This often involves verifying the signatures of transactions and ensuring that the sender has the necessary permissions to perform specific actions. Access control prevents unauthorized modifications to the contract's data.
 
+<img src="images/exapmle_stateless.png"/>
+
 ### UTXO Based Paradigm
 
 The UTXO (Unspent Transaction Output) based paradigm is famously associated with Bitcoin and some other cryptocurrencies. UTXOs are unspent transaction outputs that are created when a transaction is executed and they are consumed when a new transaction is executed. In this paradigm each transaction consumes one or more UTXOs and creates one or more new UTXOs and each UTXO can only be consumed once. UTXO-based systems are very simple. However, they can be less flexible for complex operations.
