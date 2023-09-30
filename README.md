@@ -118,9 +118,9 @@ outputs:
 
 Parallelizability is the ability to execute multiple transactions concurrently. In the context of smart contracts, parallelizability is an important consideration, as it can impact the scalability and efficiency of blockchain systems. 
 
-- **Stateful Contracts**: Stateful contracts are inherently **not parallelizable** because they maintain and manage their own state. When multiple transactions attempt to modify the same parts of the state, they can potentially lead to conflicts and race conditions.
+- **Stateful Contracts**:  **not parallelizable** because they maintain and manage their own state. When multiple transactions attempt to modify the same parts of the state, they can potentially lead to conflicts and race conditions.
 
-- **Stateless Contracts**: Stateless contracts, on the other hand, are highly parallelizable. Since they do not maintain their own state and instead rely on external accounts to provide data, they often operate on distinct and isolated parts of the state. 
+- **Stateless Contracts**: **parallelizable**, since they do not maintain their own state and instead rely on external accounts to provide data, they often operate on distinct and isolated parts of the state. 
 
 For example, in [Solana](https://solana.com), for each passed account in an instruction, we need to 
 specify if the account is read-only or writable:
