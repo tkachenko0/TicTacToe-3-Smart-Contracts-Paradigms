@@ -364,10 +364,10 @@ outputs:
     # Timeout reached
     after N:
         # Allow player B to withdraw all the deposits
-        rtxo.turnA and rtx[0].script: versig(Bob, rtx, sig) and rtx[0].val = 2:T
+        rtxo.turnA and rtx[0].script == versig(Bob, rtx, sig) and rtx[0].val = 2:T
         or
         # Allow player A to withdraw all the deposits
-        !rtxo.turnA and rtx[0].script: versig(Alice, rtx, sig) and rtx[0].val = 2:T
+        !rtxo.turnA and rtx[0].script == versig(Alice, rtx, sig) and rtx[0].val = 2:T
     )
     or
     (
