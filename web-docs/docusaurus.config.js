@@ -68,7 +68,7 @@ const config = {
         title: 'Tic Tac Toe Blockchain',
         logo: {
           alt: 'Logo',
-          src: 'img/logo.svg',
+          src: 'img/logo.jpg',
         },
         items: [
           {
