@@ -299,7 +299,7 @@ pub fn initialize(ctx: InitializeCtx, required_amount: u64, delay_slots: u64)  {
 
 The `make_move` function is responsible for updating the game state by allowing players to make a move. The function requires the `player` to be the current player, the cell to be empty, and the game to not have timed out. If these conditions are met, the function updates the board, checks if the player has won, and switches the current player.
 
-It's also important to nota that it is crucial to check is `game_data` account is owned by the program and also if the provided `player` has signed the transaction. Othervise, anyone could call the `make_move` function and modify the game state acting like the provided `player`. The [Anchor framework](https://www.anchor-lang.com) makes this check automatically.
+❗ It's also important to note that it is crucial to check if the `game_data` account is owned by the program and also if the provided `player` has signed the transaction. Othervise, anyone could call the `make_move` function and modify the game state acting like the provided `player`. The [Anchor framework](https://www.anchor-lang.com) makes this check automatically by typifying `player` as `Signer`.
 
 ```rust
 // Context of accounts passed to the make_move function
