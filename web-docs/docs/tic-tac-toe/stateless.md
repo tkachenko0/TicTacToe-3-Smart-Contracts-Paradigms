@@ -106,10 +106,8 @@ pub fn make_move(ctx: MakeMoveCtx, row: u8, col: u8)  {
     game_data.turn_a = !game_data.turn_a;
 
     if check_winner(game_data.board) {
-        msg!("Winner");
         let amount = game_data.required_amount * 2;
-        **player.to_account_info().try_borrow_mut_lamports()? += amount;
-        **game_data.to_account_info().try_borrow_mut_lamports()? -= amount;
+        // Transfer 'amount' from 'game_data' account to 'player' account
     }
 }
 
