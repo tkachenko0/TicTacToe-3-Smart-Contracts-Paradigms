@@ -5,6 +5,9 @@ skip-lint = false
 [programs.localnet]
 tic_tac_toe_anchor = "Enq7EUNZshTBsTMDzimmv4dv1wC8jaZmm7wgrSH4UPsj"
 
+[programs.testnet]
+tic_tac_toe_anchor = "Enq7EUNZshTBsTMDzimmv4dv1wC8jaZmm7wgrSH4UPsj"
+
 [registry]
 url = "https://api.apr.dev"
 

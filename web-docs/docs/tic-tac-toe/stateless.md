@@ -6,12 +6,18 @@ sidebar_position: 2
 
 The Account-Based paradigm, in its stateless form, allows executing smart contract functions without maintaining any internal state.
 
+:::tip
+You can also play the game on the `Solana testnet` on the address `Enq7EUNZshTBsTMDzimmv4dv1wC8jaZmm7wgrSH4UPsj` using the provided [client code](https://github.com/tkachenko0/TicTacToe-Blockchain/blob/main/Stateless/tic-tac-toe-anchor/tests/test_tic_tac_toe.ts)
+:::
+
 :::info
 The provided code snippets are pseudocode representations. 
 You can find the actual implementation with:
 - [Anchor on-chain code](https://github.com/tkachenko0/TicTacToe-Blockchain/blob/main/Stateless/tic-tac-toe-anchor/programs/tic-tac-toe-anchor/src/lib.rs)
 - [TypeScript client code](https://github.com/tkachenko0/TicTacToe-Blockchain/blob/main/Stateless/tic-tac-toe-anchor/tests/test_tic_tac_toe.ts)
 :::
+
+![Tic Tac Toe Stateless structure](/img/tic_tac_toe_stateless_structure.png)
 
 In the initial steps, we must set up the essential data structures required to establish the initial state of a Tic Tac Toe game on the Solana blockchain. The `GameData` structure is responsible for storing game-specific details, while the `InitializeCtx` structure serves as the context for initiating the game. The `initialize` function acts as the starting point for configuring the game state by utilizing the provided context and parameters.
 

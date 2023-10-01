@@ -10,6 +10,8 @@ Account-Based smart contracts, when stateful, have the capability to maintain an
 The provided code snippets are pseudocode representations. You can find the actual code in [Account Based (Stateful) Implementation in Solidity](https://github.com/tkachenko0/TicTacToe-Blockchain/tree/main/Statefull)
 :::
 
+![Tic Tac Toe Stateful structure](/img/tic_tac_toe_stateful_structure.png)
+
 When deployed, the contract requires certain parameters to start a game, including the addresses of two players (`playerA` and `playerB`), the number of blocks until the game times out (`gameTimeoutBlock`), and the required deposit in to participate (`requiredDeposit`). The contract also maintains the current player (`currentPlayer`), the state of the board (`board`), and whether each player has deposited (`playerAhasDeposited` and `playerBhasDeposited`).
 
 ```solidity
