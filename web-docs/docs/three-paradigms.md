@@ -8,9 +8,7 @@ Smart contracts are self-executing, immutable pieces of code that automate and e
 
 ## Account-Based Paradigm
 
-The Account-Based paradigm, exemplified by [Ethereum](https://ethereum.org/en/) and many other blockchain platforms, operates differently from the UTXO model.
-
-In this paradigm:
+The Account-Based paradigm is exemplified by [Ethereum](https://ethereum.org/en/) and many other blockchain platforms and in this paradigm:
 
 - **State Management**: accounts maintain balances and can execute code. These accounts can be externally owned accounts, controlled by private keys, or contract accounts, controlled by the code of a smart contract.
 - **State Transitions**: contracts are executed by sending transactions to their respective addresses. Contracts can store and modify their own state, which is maintained on the blockchain.
@@ -48,20 +46,20 @@ In the UTXO-based paradigm, the "script" and "witness" are fundamental concepts 
 
 ### Witness Constraints
 
-If you want to transfer an UTXO to Alice, you can specify that the witness should be the signature of Alice.
+If you want to transfer an UTXO to Bob, you can specify that the witness should be the signature of Alice.
 
 ```yaml
-# tx1 (An Actor)
+# tx1 (Alice)
 inputs:
     txA ← ... # txA holds 1:T
     # other inputs
 outputs:
-    1:T → fun sigA: versig(Alice, rtx, sig)
+    1:T → fun sigA: versig(Bob, rtx, sig)
     # other outputs
 
-# tx2 (Alice)
+# tx2 (Bob)
 inputs:
-    tx1[0] ← sigA(tx2)
+    tx1[0] ← sig_Bob(tx2)
 outputs:
     1:T → ...
 ```
@@ -104,4 +102,4 @@ const instruction = new TransactionInstruction({
 });
 ```
 
-- **UTXO-Based Contracts**: also UTXO-based contracts can be highly parallelizable. In this paradigm, each transaction consumes specific UTXOs and creates new ones. These UTXOs are typically disjoint and do not overlap in terms of state. As a result, multiple transactions can be processed in parallel.
+- **UTXO-Based Contracts**: also UTXO-based contracts can be highly **parallelizable**. In this paradigm, each transaction consumes specific UTXOs and creates new ones. These UTXOs are  disjoint and do not overlap in terms of state. As a result, multiple transactions can be processed in parallel.
