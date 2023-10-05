@@ -56,21 +56,24 @@ Within the Account-Based paradigm, we can further categorize smart contracts int
 
 #### Stateful Contracts
 
+![Stateful example](web-docs/static/img/example_stateful.png)
+
 Stateful contracts maintain and manage their own state. They can store data, update it based on transactions, and execute complex logic. 
 
 In a stateful smart contracts, the contract itself maintains the state of the game and it doesn't rely on external data. Stateful contracts are suitable for applications that require persistent storage and complex business logic, such as games, decentralized finance (DeFi) platforms, and more.
 
-<img src="images/example_stateful.png"/>
-
 #### Stateless Contracts
+
+![Stateless example](web-docs/static/img/example_stateless.png)
 
 Stateless contracts are contracts that do not maintain their own state. Instead, they relie on external accounts to provide data and instructions for their execution.
 
 ❗ In stateless contracts, ensuring the security of the system becomes paramount. One security consideration can be the **access controll**: it is crucial to implement robust access control mechanisms to ensure that only authorized entities can modify the data of an account. This often involves verifying the signatures of transactions.
 
-<img src="images/example_stateless.png"/>
-
 ### UTXO Based Paradigm
+
+![UTXO Transaction Structure](web-docs/static/img/utxo_transacion_structure.PNG)
+<p><small>UTXO Transaction Structure. Source: <a href="https://coincodecap.com/utxo">coincodecap.com</a></small></p>
 
 The UTXO (Unspent Transaction Output) paradigm is famously associated with [Bitcoin](https://bitcoin.org/en/) and some other cryptocurrencies. UTXOs are unspent transaction outputs that are created when a transaction is executed and they are consumed when a new transaction is executed. In this paradigm each transaction consumes one or more UTXOs and creates one or more new UTXOs and each UTXO can only be consumed once. UTXO-based systems are very simple. However, they can be less flexible for complex operations.
 
@@ -142,6 +145,8 @@ const instruction = new TransactionInstruction({
 ## Tic Tac Toe in the Stateful Paradigm 🧩
 
 Account-Based smart contracts, when stateful, have the capability to maintain and modify their own internal state. The contract itself maintains the state of the game. It doesn't rely on external systems to keep track of the game board or whose turn it is. Instead, it updates its internal state based on the actions of the players tracking the game board, whose turn it is, and whether someone has won.
+
+![Tic Tac Toe Stateful structure](web-docs/static/img/tic_tac_toe_stateful_structure.png)
 
 You can see the provided pseudocode implementation by opening the collapsed section below.
 
@@ -240,6 +245,8 @@ Finally, we need a function to allow players to withdraw their funds if the game
 ## Tic Tac Toe in the Stateless Paradigm 🧩
 
 The Account-Based paradigm, in its stateless form, allows executing smart contract functions without maintaining any internal state.
+
+![Tic Tac Toe Stateless structure](web-docs/static/img/tic_tac_toe_stateless_structure.png)
 
 You can see the provided pseudocode implementation by opening the collapsed section below.
 
