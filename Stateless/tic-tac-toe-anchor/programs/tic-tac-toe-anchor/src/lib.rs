@@ -100,7 +100,6 @@ pub mod tic_tac_toe_anchor {
             game_data.player_a
         };
 
-        require!(player.key == &allowed_player, CustomError::InvalidPlayer);
         require!(
             Clock::get()?.slot >= game_data.end_slot,
             CustomError::TimeoutNotReached

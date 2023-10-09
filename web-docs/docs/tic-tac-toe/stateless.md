@@ -133,7 +133,6 @@ pub fn timeout(ctx: TimeoutCtx)  {
 
     let allowed_player = if game_data.turn_a { game_data.player_b } else { game_data.player_a };
 
-    require!(player.key == &allowed_player, Err::InvalidPlayer);
     require!(Clock::current_slot >= game_data.end_slot, Err::TimeoutNotReached);
 
     // Make 'player' withdraw 'game_data.required_amount * 2' from 'game_data' account

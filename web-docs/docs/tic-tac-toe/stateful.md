@@ -89,7 +89,6 @@ Finally, we need a function to allow players to withdraw their funds if the game
     function timeout() external {
         require(block.number >= gameTimeoutBlock, "Timeout has not been reached yet");
         address allowedPlayer = currentPlayer == playerA ? playerB : playerA;
-        require(msg.sender != allowedPlayer, "Not valid player");
 
         // Transfer address(this).balance to allowedPlayer
     }

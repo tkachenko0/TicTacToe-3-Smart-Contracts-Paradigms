@@ -66,14 +66,14 @@ outputs:
 
 There are also other types of constrains, here some examples:
 
-- enforcing that the script of the `rtx` should be the same as the script of the `rtxo`:
+- enforcing that the script of the `rtx` should be the same as the script of the `ctxo`:
 ```yaml
 # tx
 inputs: ...
 outputs:
     ... → fun x: rtx[0].script == ctxo[0].script
 ```
-- enforcing that the value of `myVar` of the `rtx` should be the same of the `rtxo`:
+- enforcing that the value of `myVar` of the `rtx` should be the same of the `ctxo`:
 ```yaml
 # tx
 inputs: ...

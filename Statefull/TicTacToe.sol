@@ -62,7 +62,6 @@ contract TicTacToe {
     function timeout() external {
         require(block.number >= gameTimeoutBlock, "Timeout has not been reached yet");
         address allowedPlayer = currentPlayer == playerA ? playerB : playerA;
-        require(msg.sender != allowedPlayer, "Not valid player");
 
         (bool success, ) = allowedPlayer.call{value: address(this).balance}("");
         require(success, "Transfer failed");

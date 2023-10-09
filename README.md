@@ -233,7 +233,6 @@ Finally, we need a function to allow players to withdraw their funds if the game
     function timeout() external {
         require(block.number >= gameTimeoutBlock, "Timeout has not been reached yet");
         address allowedPlayer = currentPlayer == playerA ? playerB : playerA;
-        require(msg.sender != allowedPlayer, "Not valid player");
 
         // Transfer address(this).balance to allowedPlayer
     }
@@ -377,7 +376,6 @@ pub fn timeout(ctx: TimeoutCtx)  {
 
     let allowed_player = if game_data.turn_a { game_data.player_b } else { game_data.player_a };
 
-    require!(player.key == &allowed_player, Err::InvalidPlayer);
     require!(Clock::current_slot >= game_data.end_slot, Err::TimeoutNotReached);
 
     // Make 'player' withdraw 'game_data.required_amount * 2' from 'game_data' account
