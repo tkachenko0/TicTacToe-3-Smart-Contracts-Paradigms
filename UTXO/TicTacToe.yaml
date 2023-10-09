@@ -8,46 +8,43 @@ outputs:
     # Timeout reached
     after N:
         # Allow player B to withdraw all the deposits
-        rtxo.turnA and rtx[0].script == versig(Bob, rtx, sig) and rtx[0].val = 2:T
+        ctxo.turnA and rtx[0].script == versig(Bob, rtx, sig) and rtx[0].val = 2:T
         or
         # Allow player A to withdraw all the deposits
-        !rtxo.turnA and rtx[0].script == versig(Alice, rtx, sig) and rtx[0].val = 2:T
+        !ctxo.turnA and rtx[0].script == versig(Alice, rtx, sig) and rtx[0].val = 2:T
     )
     or
     (
     # Timeout not reached
     before N:
-        rtx[0].script == rtxo[0].script and
         # If valid coordinates and right board configuration
-        txo.board[row, col] == 'Empty' and
+        ctxo.board[row, col] == 'Empty' and
         row >= 0 and row < 3 and col >= 0 and col < 3 and
-        rtx[0].board[otherx, othery] == rtxo.board[otherx, othery] ∀(otherx,othery) != (row, col) and
-        ((rtxo.turnA and rtx[0].board[row, col] == 'X') or (!rtxo.turnA and rtx[0].board[row, col] == 'O')) and
+        rtx[0].board[otherx, othery] == ctxo.board[otherx, othery] ∀(otherx, othery) != (row, col) and
+        ((ctxo.turnA and rtx[0].board[row, col] == 'X') or (!ctxo.turnA and rtx[0].board[row, col] == 'O')) and
         # Checking the turn
-        rtx[0].turnA == !rtxo.turnA and
-        ((rtxo.turnA and versig(Alice, rtx, sig)) or (!rtxo.turnA and versig(Bob, rtx, sig))) and
+        rtx[0].turnA == !ctxo.turnA and
+        ((ctxo.turnA and versig(Alice, rtx, sig)) or (!ctxo.turnA and versig(Bob, rtx, sig))) and
         (
             (
                 # Allow player A to withdraw
-                rtxo.turnA and isWinner(rtx[0].board, 'Symbol X') and
-                rtx[0].val = 0:T and
-                rtx[1].script == versig(Alice, rtx, sig) and
-                rtx[1].val = 2:T
+                ctxo.turnA and isWinner(rtx[0].board, 'Symbol X') and
+                rtx[0].val = 2:T and
+                rtx[0].script == versig(Alice, rtx, sig) and
             )
             or
             (
                 # Allow player B to withdraw
-                !rtxo.turnA and isWinner(rtx[0].board, 'Symbol O') and
-                rtx[0].val = 0:T and
-                rtx[1].script == versig(Bob, rtx, sig) and
-                rtx[1].val = 2:T
+                !ctxo.turnA and isWinner(rtx[0].board, 'Symbol O') and
+                rtx[0].val = 2:T and
+                rtx[0].script == versig(Bob, rtx, sig) and
             )
             or
             (
                 # The game is not finished yet
                 rtx[0].val = 2:T
+                rtx[0].script == ctxo[0].script
             )
         )
     ) and
     |rtx.inputs|==1
-    
