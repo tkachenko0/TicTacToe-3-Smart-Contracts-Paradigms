@@ -340,10 +340,10 @@ pub fn make_move(ctx: MakeMoveCtx, row: u8, col: u8)  {
     require!(player.key == current_player, Err::InvalidPlayer);
     require!(Clock::current_slot < game_data.end_slot, Err::TimeoutReached);
     require!(row < 3 && col < 3, Err::InvalidPosition);
-    require!(game_data.board[row as usize][col as usize] == Symbol::SymbolEmpty,Err::CellOccupied);
+    require!(game_data.board[row][col] == Symbol::SymbolEmpty,Err::CellOccupied);
 
     let player_symbol = if game_data.turn_a { Symbol::SymbolX } else { Symbol::SymbolO};
-    game_data.board[row as usize][col as usize] = player_symbol;
+    game_data.board[row][col] = player_symbol;
     game_data.turn_a = !game_data.turn_a;
 
     if check_winner(game_data.board) {
