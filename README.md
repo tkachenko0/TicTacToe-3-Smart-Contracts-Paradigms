@@ -16,9 +16,11 @@
   * [Acknowledgments 🙏](#acknowledgments---)
   * [License 📜](#license---)
 
-## Introduction 👋
-
 You can visit [Website Docs](https://tic-tac-toe-blockchain-sbs9.vercel.app/docs/intro) to learn more about this project.
+
+![WebDocs](web-docs/static/img/web-docs.png)
+
+## Introduction 👋
 
 Hello, in this repository, we explore the three fundamental smart contract paradigms: 
 - UTXO-based
